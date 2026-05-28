@@ -8,14 +8,14 @@ window.CARDS_DATA = {
   cards: [
     {
       id: "card_1",
-      title: "Lễ hội làng, đình làng, tế tổ tiên theo phong tục truyền thống",
+      title: "Hành động tôn thờ các vị thần địa phương",
       description:
-        "Người dân tập trung tại đình làng, có ban tổ chức, không ép buộc đóng góp, không hứa \"cầu được ước thấy\" bằng tiền.",
+        "người dân tập hợp tại đền chùa và tổ chức múa và sinh hoạt",
       media: "media/card_1.mp4",
       difficulty: "easy",
       correctAnswer: false,
       explanation:
-        "Đây là sinh hoạt văn hóa, tín ngưỡng truyền thống thường được pháp luật và cộng đồng công nhận khi tổ chức lành mạnh, minh bạch.",
+        "Đây là hành vi mê tín dị đoan cho rằng các vị thần địa phương có tồn tại và nhập thể vào con người",
       whyBelief:
         "Có tổ chức công khai, không dọa nạt hay bán \"linh nghiệm\" để vơ tiền — đúng bản chất sinh hoạt tín ngưỡng lành mạnh.",
       whySuperstition:
@@ -23,9 +23,9 @@ window.CARDS_DATA = {
     },
     {
       id: "card_2",
-      title: "Thầy bói nói nhà có \"vong\" theo, yêu cầu nộp tiền triệu để \"giải\"",
+      title: "Hoạt động tu tập văn hóa địa phương để cùng nhau chiêu mời những vị thần và sùng bái họ",
       description:
-        "Dọa tai họa nếu không làm lễ ngay, không cho gia đình suy nghĩ, yêu cầu chuyển khoản gấp.",
+        "Đám đông tập trung nhảy múa để cầu mùa màng bội thu",
       media: "media/card_2.mp4",
       difficulty: "easy",
       correctAnswer: false,
@@ -37,48 +37,52 @@ window.CARDS_DATA = {
         "Dọa \"vong\", ép chuyển tiền gấp, không cho thời gian cân nhắc — đúng dấu hiệu mê tín dị đoan / lợi dụng tâm linh.",
     },
     {
-      id: "card_3",
-      title: "Đi lễ chùa dịp Tết, thắp hương, cầu bình an, không bị thu phí \"cứng\"",
-      description:
-        "Tự nguyện dâng hương hoa, giữ trật tự, không ai hứa chắc chắn \"đổi vận\" bằng tiền.",
-      media: "media/card_3.mp4",
-      difficulty: "easy",
-      correctAnswer: true,
-      explanation: "Hoạt động tín ngưỡng tôn giáo/tâm linh chính đáng, minh bạch, không ép buộc tài chính.",
-      whyBelief:
-        "Tự nguyện, trật tự, không bán chắc chắn \"đổi vận\" — phù hợp hoạt động tín ngưỡng/tôn giáo bình thường.",
-      whySuperstition:
-        "Không có dấu hiệu mê tín dị đoan: không dọa dẫm, không tính phí ép buộc để hứa hẹn phi lý.",
+    id: "card_3",
+    title: "Sự xuất hiện của người tự xưng được trời chọn để dẫn dắt và ban phát phúc lành cho bá tánh",
+    description:
+    "Buổi truyền giảng diễn ra công khai khi một người đàn ông tuyên bố mình chính là Tôn Ngộ Không hạ phàm để cứu độ người dân.",
+    media: "media/card_3.mp4",
+    difficulty: "easy",
+    correctAnswer: false,
+    explanation:
+    "Đây là biểu hiện của mê tín dị đoan khi một cá nhân tự nhận mình là nhân vật thần thoại có quyền năng siêu nhiên nhằm tạo niềm tin và ảnh hưởng đến người khác.",
+    whyBelief:
+    "Không phải tín ngưỡng chính đáng vì nội dung dựa trên việc một cá nhân tự xưng là thần thánh hoặc nhân vật huyền thoại hạ phàm để dẫn dắt con người.",
+    whySuperstition:
+    "Tự nhận là Tôn Ngộ Không chuyển thế và có khả năng cứu độ, ban phúc là dấu hiệu điển hình của mê tín dị đoan, dễ gây hoang mang và tạo niềm tin mù quáng.",
     },
     {
-      id: "card_4",
-      title: "Bán \"nước thánh\" chữa ung thư, cam kết khỏi bệnh trong 7 ngày",
-      description:
-        "Quảng cáo trên mạng, yêu cầu bỏ thuốc bệnh viện, chỉ uống nước họ bán.",
-      media: "media/card_4.mp4",
-      difficulty: "medium",
-      correctAnswer: false,
-      explanation:
-        "Lừa đảo, gây hại sức khỏe — mê tín dị đoan, vi phạm pháp luật về khám chữa bệnh và quảng cáo.",
-      whyBelief:
-        "Không thể là tín ngưỡng chính đáng: hứa chữa bệnh hiểm nghèo bằng sản phẩm phi y học, bảo người bệnh bỏ điều trị.",
-      whySuperstition:
-        "Cam kết chữa ung thư trong 7 ngày, bỏ thuốy — điển hình mê tín dị đoan và có thể cấu thành hành vi lừa đảo.",
-    },
-    {
-      id: "card_5",
-      title: "Họp mặt cộng đồng cầu siêu, tưởng nhớ nạn nhân thiên tai",
-      description:
-        "Ban tổ chức công khai, không thu phí bất thường, mục đích chia sẻ, an ủi tinh thần.",
-      media: "media/card_5.mp4",
-      difficulty: "medium",
-      correctAnswer: true,
-      explanation: "Sinh hoạt tín ngưỡng nhân văn, hướng thiện, không lợi dụng tâm lý để trục lợi.",
-      whyBelief:
-        "Công khai, nhân văn, không thu phí bất thường — gần với nghi lễ tưởng niệm / tín ngưỡng lành mạnh.",
-      whySuperstition:
-        "Không có dọa nạt hay bán \"công đức\" — khó xếp vào mê tín dị đoan theo mô tả này.",
-    },
+id: "card_4",
+title: "Buổi liên lạc tâm linh với người cõi âm được tổ chức vào ban đêm",
+description:
+"Một nhóm người ngồi quanh bàn, đặt tay lên tấm bảng cầu cơ và liên tục hỏi chuyện các linh hồn để xin lời chỉ dẫn.",
+media: "media/card_4.mp4",
+difficulty: "medium",
+correctAnswer: false,
+explanation:
+"Cầu cơ là hoạt động mang tính mê tín dị đoan vì tin rằng có thể giao tiếp trực tiếp với linh hồn hoặc thế lực siêu nhiên để nhận lời tiên đoán.",
+whyBelief:
+"Không phải tín ngưỡng chính đáng vì dựa trên niềm tin giao tiếp với linh hồn nhằm xin thông tin, dự đoán hoặc can thiệp vào đời sống thực tế.",
+whySuperstition:
+"Tin rằng linh hồn điều khiển bàn cầu cơ và đưa ra lời phán là biểu hiện phổ biến của mê tín dị đoan.",
+},
+
+{
+id: "card_5",
+title: "Đại lễ cúng sao giải hạn quy mô lớn nhằm hấp thụ năng lượng vũ trụ",
+description:
+"Người tham gia mang theo danh sách họ tên, ngày sinh và ví tiền với niềm tin càng cúng nhiều thì sao xấu càng né mình ra xa.",
+media: "media/card_5.mp4",
+difficulty: "medium",
+correctAnswer: false,
+explanation:
+"Hoạt động lợi dụng niềm tin tâm linh để khiến mọi người tin rằng có thể dùng nghi lễ hoặc tiền bạc nhằm thay đổi vận hạn.",
+whyBelief:
+"Không còn là tín ngưỡng đơn thuần khi nghi lễ bị gắn với việc bỏ tiền để đổi vận hoặc xóa bỏ tai họa cá nhân.",
+whySuperstition:
+"Tin rằng chỉ cần cúng sao và đóng tiền là có thể né vận xui, đổi số mệnh là biểu hiện điển hình của mê tín dị đoan.",
+},
+
     {
       id: "card_6",
       title: "\"Thầy\" online xem ảnh mặt là biết tang sự, đòi tiền gỡ họa",
