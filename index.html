@@ -1,370 +1,948 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mê tín hay tín ngưỡng?</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Trang chủ / vào game -->
-    <div class="screen-intro" id="screenIntro" aria-hidden="false">
-      <div class="screen-intro__aurora" aria-hidden="true"></div>
-      <div class="screen-intro__grid" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--1" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--2" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--3" aria-hidden="true"></div>
 
-      <div class="screen-intro__frame">
-        <header class="screen-intro__top">
-          <div class="screen-intro__logo">
-            <span class="screen-intro__logo-icon" aria-hidden="true">◇</span>
-            <span class="screen-intro__logo-text">SPST · C6</span>
-          </div>
-          <div class="screen-intro__pills" aria-hidden="true">
-            <span class="screen-intro__pill">Quest</span>
-            <span class="screen-intro__pill screen-intro__pill--live">Live</span>
-          </div>
-        </header>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Tín Ngưỡng vs Mê Tín — Thuyết Trình MLN131</title>
+  <meta name="description" content="Khảo sát ranh giới giữa tín ngưỡng lành mạnh và mê tín dị đoan trong thời đại công nghệ số.">
 
-        <div class="screen-intro__body">
-          <p class="screen-intro__eyebrow">Minigame phân loại</p>
-          <h1 class="screen-intro__title">
-            <span class="screen-intro__title-line">Tín ngưỡng</span>
-            <span class="screen-intro__title-vs">vs</span>
-            <span class="screen-intro__title-line screen-intro__title-line--accent">Mê tín</span>
-          </h1>
-          <p class="screen-intro__lead">
-            Lật thẻ pastel đọc tình huống → xem clip (nút tròn góc phải) → chọn đúng loại. Đồng hồ chỉ chạy
-            <strong>sau khi lật thẻ</strong>, tạm dừng khi xem fullscreen.
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/presentation.css">
+</head>
+
+<body class="grain">
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <div id="reading-progress"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header id="site-header">
+    <div class="header-brand">
+      <div class="brand-mark">
+        <span class="material-symbols-outlined" style="font-size:20px;">balance</span>
+      </div>
+      <div class="brand-text">
+        <span class="brand-kicker">SPST · C6</span>
+        <span class="brand-title">MLN131</span>
+      </div>
+    </div>
+
+    <nav class="hidden md:flex header-nav">
+      <a class="nav-link active" href="#hero">Giới thiệu</a>
+      <a class="nav-link" href="#tom-tat">Tóm tắt</a>
+      <a class="nav-link" href="#ly-thuyet">Lý thuyết</a>
+      <a class="nav-link" href="#thuc-tien">Thực tiễn</a>
+      <a class="nav-link" href="#phu-luc-ai">Phụ lục AI</a>
+      <a class="nav-link" href="#trach-nhiem">Trách nhiệm</a>
+    </nav>
+
+    <div class="hidden md:flex gap-3">
+      <a href="#phu-luc-ai" class="btn-soft btn-soft--ghost">
+        <span class="material-symbols-outlined" style="font-size:16px;">smart_toy</span>
+        Phụ lục AI
+      </a>
+      <a href="game.html" class="btn-soft">
+        <span class="material-symbols-outlined" style="font-size:16px;">sports_esports</span>
+        Chơi minigame
+      </a>
+    </div>
+
+    <button id="mobile-menu-btn" class="md:hidden header-menu-btn">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </header>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <a class="nav-link" href="#hero" onclick="closeMobileNav()">Giới thiệu</a>
+    <a class="nav-link" href="#tom-tat" onclick="closeMobileNav()">Tóm tắt</a>
+    <a class="nav-link" href="#ly-thuyet" onclick="closeMobileNav()">Lý thuyết</a>
+    <a class="nav-link" href="#thuc-tien" onclick="closeMobileNav()">Thực tiễn</a>
+    <a class="nav-link" href="#phu-luc-ai" onclick="closeMobileNav()">Phụ lục AI</a>
+    <a class="nav-link" href="#trach-nhiem" onclick="closeMobileNav()">Trách nhiệm</a>
+    <a class="btn-soft" href="game.html" onclick="closeMobileNav()" style="justify-content:center;">
+      <span class="material-symbols-outlined" style="font-size:16px;">sports_esports</span>
+      Chơi minigame
+    </a>
+    <button onclick="closeMobileNav()" class="mobile-close">
+      <span class="material-symbols-outlined" style="font-size:28px;">close</span>
+    </button>
+  </div>
+
+  <main>
+
+    <!-- ══ HERO ══ -->
+    <section id="hero" class="hero-section">
+      <div class="hero-section__bg"></div>
+      <div class="hero-section__orb hero-section__orb--1"></div>
+      <div class="hero-section__orb hero-section__orb--2"></div>
+      <div class="hero-section__orb hero-section__orb--3"></div>
+
+      <!-- Decorative vertical text -->
+      <div style="position:absolute;right:3rem;top:50%;transform:translateY(-50%) rotate(90deg);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--text-ghost);pointer-events:none;white-space:nowrap;display:none;" class="hidden lg:block">
+        Chủ nghĩa Xã hội Khoa học · 2026
+      </div>
+
+      <!-- Spinning Premium Stamp -->
+      <div class="spinning-stamp hidden lg:flex" style="position:absolute; right:4rem; top:65%; transform:translateY(-50%); width:140px; height:140px; pointer-events:none; align-items:center; justify-content:center; opacity: 0.8;">
+        <svg viewBox="0 0 100 100" width="140" height="140" style="animation: spinStamp 16s linear infinite; transform-origin: center;">
+          <defs>
+            <path id="circlePath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"></path>
+          </defs>
+          <text font-size="9" font-weight="600" letter-spacing="0.18em" fill="var(--gold)" style="text-transform: uppercase; font-family: var(--font-body);">
+            <textPath href="#circlePath">
+              SPST · C6 · MLN131 · BÁO CÁO PHÂN TÍCH ·
+            </textPath>
+          </text>
+        </svg>
+        <span class="material-symbols-outlined" style="position:absolute; font-size: 32px; color: var(--gold);">workspace_premium</span>
+      </div>
+
+      <div class="relative z-10 px-6 md:px-20 max-w-[1400px] mx-auto w-full pt-40 pb-16">
+
+        <!-- Eyebrow chip -->
+        <div class="reveal mb-7">
+          <div class="pill-chip">
+            <span>Chủ nghĩa Xã hội Khoa học</span>
+            <span class="pill-chip__dot"></span>
+            <span>Đề tài SPST-C6-02</span>
+            <span class="pill-chip__dot"></span>
+            <span style="color:var(--gold);font-weight:600;">MLN131</span>
+          </div>
+        </div>
+
+        <div class="split-layout items-center">
+          <div>
+            <!-- Thin horizontal line -->
+            <div class="reveal" style="width:48px;height:2px;background:linear-gradient(90deg,var(--gold),var(--sage));margin-bottom:1.5rem;border-radius:999px;"></div>
+
+            <h1 class="reveal delay-1 hero-title" style="font-size: clamp(3rem, 7vw, 5.5rem);">
+              Tín Ngưỡng và Mê Tín
+              <span class="hero-title__accent">chữa lành tinh thần</span>
+              <span class="hero-title__sub" style="font-size: 0.35em;">hay trục lợi trong thời công nghệ số?</span>
+            </h1>
+
+            <p class="reveal delay-2 hero-lead" style="max-width:560px;margin-top:1.8rem;">
+              Một bản trình bày tinh tế và chuyên sâu về ranh giới mỏng manh giữa nhu cầu tinh thần chính đáng và hành vi mê tín dị đoan. 
+              Tài liệu đi sâu vào thực tế Gen Z, phân tích vai trò của thuật toán mạng xã hội, AI, và bóc trần những hình thức trục lợi tâm linh online hiện đại.
+            </p>
+
+            <div class="reveal delay-3 flex flex-wrap gap-4 mt-9">
+              <a href="#ly-thuyet" class="btn-soft btn-soft--large">
+                <span class="material-symbols-outlined" style="font-size:17px;">auto_stories</span>
+                Khám phá nội dung
+              </a>
+              <a href="game.html" class="btn-soft btn-soft--ghost btn-soft--large">
+                <span class="material-symbols-outlined" style="font-size:17px;">sports_esports</span>
+                Thử minigame
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="reveal delay-2">
+            <div class="editorial-image">
+              <img src="images/hero_balance.png" alt="Sự cân bằng giữa tâm linh và công nghệ">
+            </div>
+            
+            <div class="glass-soft" style="padding: 18px 24px; margin-top: 1.5rem; position: relative; z-index: 10;">
+              <div class="hero-card__badge" style="margin-bottom: 12px;">Báo cáo phân tích</div>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-style: italic; line-height: 1.6;">
+                "Giữa ma trận dữ liệu và thuật toán, con người vẫn không ngừng tìm kiếm chỗ dựa tinh thần."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal delay-4 mt-16 flex items-center gap-4">
+          <div class="scroll-line"></div>
+          <span class="scroll-text">Cuộn xuống để xem bố cục đầy đủ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MARQUEE ══ -->
+    <div class="marquee-divider">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>TÍN NGƯỠNG LÀNH MẠNH</span><span class="marquee-dot"></span>
+          <span>PHÂN BIỆT MÊ TÍN DỊ ĐOAN</span><span class="marquee-dot"></span>
+          <span>KINH TẾ TÂM LINH SỐ</span><span class="marquee-dot"></span>
+          <span>PHỤ LỤC AI MINH BẠCH</span><span class="marquee-dot"></span>
+          <span>TRÁCH NHIỆM SINH VIÊN</span><span class="marquee-dot"></span>
+          <span>TÍN NGƯỠNG LÀNH MẠNH</span><span class="marquee-dot"></span>
+          <span>PHÂN BIỆT MÊ TÍN DỊ ĐOAN</span><span class="marquee-dot"></span>
+          <span>KINH TẾ TÂM LINH SỐ</span><span class="marquee-dot"></span>
+          <span>PHỤ LỤC AI MINH BẠCH</span><span class="marquee-dot"></span>
+          <span>TRÁCH NHIỆM SINH VIÊN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TÓM TẮT ══ -->
+    <section id="tom-tat" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">Tóm tắt vấn đề</div>
+        <h2 class="section-title">Từ câu hỏi trung tâm đến mạch lập luận</h2>
+        <p class="section-lead">Ba áp lực cốt lõi dẫn dắt câu hỏi trung tâm của bài thuyết trình</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
+        <!-- Card 1: Áp lực thực tế -->
+        <article class="glass-soft reveal delay-1" style="border-radius:24px; overflow:hidden; display:flex; flex-direction:column; border-top: 4px solid var(--gold);">
+          <div style="height:200px; position:relative; overflow:hidden; background:var(--ink);">
+            <img src="images/concept_pressure.png" alt="Áp lực Gen Z" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,11,12,0.55), transparent);"></div>
+          </div>
+          <div style="padding:1.8rem;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+              <span class="material-symbols-outlined" style="color:var(--gold-deep);font-size:22px;">psychology</span>
+              <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--ink);margin:0;">Áp lực thực tế</h3>
+            </div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;">
+              <li style="padding-left:1.4rem;position:relative;margin-bottom:0.6rem;"><span style="position:absolute;left:0;color:var(--gold-deep);">✦</span> Khủng hoảng <strong style="color:var(--gold-deep);">việc làm & FOMO</strong> đẩy nhu cầu tìm chỗ dựa tinh thần.</li>
+              <li style="padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold-deep);">✦</span> Áp lực đồng lứa khiến Gen Z dễ bị <strong style="color:var(--gold-deep);">khai thác cảm xúc</strong>.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Card 2: AI và mạng xã hội -->
+        <article class="glass-soft reveal delay-2" style="border-radius:24px; overflow:hidden; display:flex; flex-direction:column; border-top: 4px solid var(--navy);">
+          <div style="height:200px; position:relative; overflow:hidden; background:var(--ink);">
+            <img src="images/concept_ai_social.png" alt="AI và mạng xã hội" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,11,12,0.55), transparent);"></div>
+          </div>
+          <div style="padding:1.8rem;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+              <span class="material-symbols-outlined" style="color:var(--navy);font-size:22px;">smart_toy</span>
+              <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--ink);margin:0;">AI & Mạng xã hội</h3>
+            </div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;">
+              <li style="padding-left:1.4rem;position:relative;margin-bottom:0.6rem;"><span style="position:absolute;left:0;color:var(--navy);">✦</span> Thuật toán khiến nội dung tâm linh <strong style="color:var(--navy);">lan nhanh & thao túng</strong>.</li>
+              <li style="padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--navy);">✦</span> AI bị lợi dụng để <strong style="color:var(--navy);">thương mại hóa</strong> niềm tin.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Card 3: Ranh giới pháp lý -->
+        <article class="glass-soft reveal delay-3" style="border-radius:24px; overflow:hidden; display:flex; flex-direction:column; border-top: 4px solid var(--green);">
+          <div style="height:200px; position:relative; overflow:hidden; background:var(--ink);">
+            <img src="images/concept_anonymous.png" alt="Ranh giới pháp lý" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,11,12,0.55), transparent);"></div>
+          </div>
+          <div style="padding:1.8rem;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+              <span class="material-symbols-outlined" style="color:var(--green);font-size:22px;">verified_user</span>
+              <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--ink);margin:0;">Ranh giới pháp lý</h3>
+            </div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;">
+              <li style="padding-left:1.4rem;position:relative;margin-bottom:0.6rem;"><span style="position:absolute;left:0;color:var(--green);">✦</span> Tự do tín ngưỡng phải đi kèm <strong style="color:var(--green);">kiểm chứng & trách nhiệm</strong>.</li>
+              <li style="padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✦</span> Pháp luật cần là <strong style="color:var(--green);">lá chắn bảo vệ</strong> người trẻ khỏi trục lợi.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══ LÝ THUYẾT ══ -->
+    <section id="ly-thuyet" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
+
+      <!-- Divider -->
+      <div class="gold-rule mb-16"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+        <div>
+          <div class="section-eyebrow reveal">Lý luận Chương 6</div>
+          <h2 class="section-title reveal delay-1">Hệ thống khái niệm để phân định đúng sai</h2>
+          <p class="section-lead reveal delay-2">
+            Dựa trên giáo trình MLN131, bài thuyết trình đối chiếu ba khái niệm nền tảng: tín ngưỡng, tôn giáo và mê tín dị đoan.
+            Từ đó, bộc lộ ranh giới giữa niềm tin lành mạnh và hành vi trục lợi.
           </p>
 
-          <div class="screen-intro__cards-preview" aria-hidden="true">
-            <div class="screen-intro__mini screen-intro__mini--a"></div>
-            <div class="screen-intro__mini screen-intro__mini--b"></div>
-            <div class="screen-intro__mini screen-intro__mini--c"></div>
-          </div>
-
-          <ul class="screen-intro__rules">
-            <li><strong>3 cấp độ</strong> — Dễ 30s · Vừa 20s · Khó 10s mỗi câu</li>
-            <li><strong>Điểm</strong> theo độ khó thẻ; popup giải thích hai phía sau mỗi lượt</li>
-            <li><strong>Clip</strong> chỉ phát khi phóng to; đóng lại để tiếp tục chọn</li>
-          </ul>
-
-          <p class="screen-intro__error" id="introErrorLine" hidden></p>
-
-          <div class="screen-intro__actions">
-            <button type="button" class="screen-intro__btn screen-intro__btn--primary" id="introEnterBtn">
-              <span class="screen-intro__btn-glow" aria-hidden="true"></span>
-              <span class="screen-intro__btn-label">Vào game</span>
-              <span class="screen-intro__btn-arrow" aria-hidden="true">▶</span>
-            </button>
-          </div>
-        </div>
-
-        <footer class="screen-intro__footer">
-          <div class="screen-intro__xp-bar" aria-hidden="true">
-            <span class="screen-intro__xp-fill"></span>
-          </div>
-          <div class="screen-intro__ticker" aria-hidden="true">
-            <div class="screen-intro__ticker-inner">
-              <span>Lật thẻ</span><span class="dot"></span><span>Phóng to</span><span class="dot"></span
-              ><span>Chọn đáp án</span><span class="dot"></span><span>Popup giải thích</span><span class="dot"></span>
-              <span>Lật thẻ</span><span class="dot"></span><span>Phóng to</span><span class="dot"></span
-              ><span>Chọn đáp án</span><span class="dot"></span><span>Popup giải thích</span>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-
-    <div class="app-bg" aria-hidden="true"></div>
-
-    <div id="screenGame" class="screen-game" hidden>
-      <div class="screen-game__viz" aria-hidden="true">
-        <div class="screen-game__viz-blob screen-game__viz-blob--a"></div>
-        <div class="screen-game__viz-blob screen-game__viz-blob--b"></div>
-        <div class="screen-game__viz-blob screen-game__viz-blob--c"></div>
-        <div class="screen-game__viz-grid"></div>
-        <div class="screen-game__viz-sparkles">
-          <span></span><span></span><span></span><span></span><span></span><span></span><span></span
-          ><span></span>
-        </div>
-      </div>
-      <header class="top-bar">
-        <div class="brand">
-          <span class="brand__mark" aria-hidden="true">◇</span>
-          <div class="brand__text">
-            <span class="brand__tag">Quest</span>
-            <h1>Tín ngưỡng vs mê tín</h1>
-          </div>
-        </div>
-        <div class="top-bar__controls">
-          <div class="difficulty" id="difficultyGroup" role="group" aria-label="Mức độ">
-            <button type="button" class="pill pill--active" data-difficulty="easy">Dễ</button>
-            <button type="button" class="pill" data-difficulty="medium">Vừa</button>
-            <button type="button" class="pill" data-difficulty="hard">Khó</button>
-          </div>
-          <div class="top-bar__meta">
-            <div class="question-timer" id="questionTimerWrap" hidden>
-              <span class="question-timer__label">Thời gian</span>
-              <span class="question-timer__sec" id="questionTimerValue">30</span>
-              <div class="question-timer__bar" aria-hidden="true">
-                <span class="question-timer__fill" id="questionTimerFill"></span>
+          <div class="accordion-wrap reveal delay-3">
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>1. Nguồn gốc kinh tế – xã hội</span>
+                <span class="accordion-icon material-symbols-outlined">add</span>
+              </div>
+              <div class="accordion-body">
+                <p>Con người tìm đến chỗ dựa tinh thần khi đối diện bất ổn, áp lực và những biến động khó kiểm soát. Sự bùng nổ dịch vụ tâm linh online sau dịch bệnh là minh chứng thực tiễn rõ nét.</p>
               </div>
             </div>
-            <div class="score-board" id="scoreBoard" aria-live="polite">
-              <span class="score-board__label">Điểm</span>
-              <span class="score-board__value" id="scoreValue">0</span>
-              <span class="score-board__meta" id="scoreMeta">0 / 0</span>
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>2. Nguồn gốc nhận thức</span>
+                <span class="accordion-icon material-symbols-outlined">add</span>
+              </div>
+              <div class="accordion-body">
+                <p>Khi tri thức chưa đủ hoặc thiếu kiểm chứng, con người dễ tuyệt đối hóa điều chưa hiểu và tin vào cách giải thích siêu nhiên. Đây là sự cường điệu mặt chủ thể của nhận thức.</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="layout">
-        <section class="panel panel--left panel--glow" aria-labelledby="leftHeading">
-          <div class="panel__head">
-            <h2 id="leftHeading">Thẻ tình huống</h2>
-            <p class="panel__step" id="cardStep"></p>
-          </div>
-
-          <div class="card-stage" id="flipStage">
-            <div
-              class="flip-master flip-master--interactive"
-              id="flipMaster"
-              aria-controls="fullscreenLayer"
-            >
-              <div class="flip-card-3d" id="flipCard3d">
-                <div class="flip-card-3d__inner" id="flipInner">
-                  <button
-                    type="button"
-                    class="flip-card-3d__face flip-card-3d__face--front"
-                    id="flipFront"
-                    aria-label="Lật thẻ để xem clip và chọn đáp án"
-                  >
-                    <span class="flip-front__noise" aria-hidden="true"></span>
-                    <span class="flip-front__sheen" aria-hidden="true"></span>
-                    <span class="flip-front__step" id="flipFrontStep"></span>
-                    <p class="flip-front__title" id="flipFrontTitle"></p>
-                    <p class="flip-front__desc" id="flipFrontDesc"></p>
-                    <span class="flip-front__hint">
-                      <svg class="flip-front__hint-svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
-                        <path
-                          fill="currentColor"
-                          d="M12 4a8 8 0 018 8h-2a6 6 0 10-12 0H6a8 8 0 018-8zm0 4a4 4 0 014 4h-2a2 2 0 10-4 0h-2a4 4 0 014-4zm0 4a1 1 0 011 1v1h-2v-1a1 1 0 011-1z"
-                        />
-                      </svg>
-                      Chạm để lật thẻ
-                    </span>
-                  </button>
-                  <div class="flip-card-3d__face flip-card-3d__face--back" aria-hidden="true">
-                    <div class="flip-back__shell">
-                      <div class="situation-card__media-wrap">
-                        <video
-                          id="previewVideo"
-                          class="situation-card__video"
-                          playsinline
-                          muted
-                          preload="auto"
-                        ></video>
-                        <div class="situation-card__fallback" id="previewFallback" hidden>
-                          <p class="situation-card__fallback-title" id="previewFallbackTitle"></p>
-                          <p class="situation-card__fallback-text" id="previewFallbackText"></p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        class="flip-expand-fab"
-                        id="flipExpandFab"
-                        aria-label="Phóng to clip toàn màn hình"
-                        title="Phóng to"
-                      >
-                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                          <path
-                            fill="currentColor"
-                            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                          />
-                        </svg>
-                      </button>
-                      <div class="situation-card__badge" id="cardBadge"></div>
-                    </div>
-                  </div>
-                </div>
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>3. Nguồn gốc tâm lý</span>
+                <span class="accordion-icon material-symbols-outlined">add</span>
+              </div>
+              <div class="accordion-body">
+                <p>Sợ hãi, cô đơn, FOMO, mong muốn được an ủi là những điều khiến mê tín có "đất sống" trên không gian số. Việc Gen Z tìm điểm tựa vì lo âu hoàn toàn phù hợp với nguồn gốc này.</p>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="progress progress--game">
-            <div class="progress__track">
-              <div class="progress__bar" id="progressBar"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="glass-soft concept-card reveal delay-1" style="padding: 2rem; border-radius: 24px;">
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">history_edu</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 0.8rem;">1. Tín ngưỡng</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Niềm tin và cách thể hiện niềm tin trước sự linh thiêng, hướng con người tới giá trị tốt đẹp. Tín ngưỡng là nhu cầu tinh thần chính đáng.</p>
+          </div>
+          <div class="glass-soft concept-card reveal delay-2" style="padding: 2rem; border-radius: 24px;">
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">church</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 0.8rem;">2. Tôn giáo</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Hình thái ý thức xã hội có giáo thuyết, lễ nghi, tổ chức, cơ sở thờ tự và cộng đồng tín đồ. Tôn giáo đóng vai trò liên kết xã hội.</p>
+          </div>
+          <div class="glass-soft concept-card reveal delay-3" style="padding: 2rem; border-radius: 24px;">
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(184,107,115,0.2); color: var(--blush); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">warning</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--blush); margin-bottom: 0.8rem;">3. Mê tín dị đoan</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Niềm tin cuồng tín, mù quáng, đi kèm hành vi cực đoan, sai lệch, gây hại cho cá nhân và xã hội. Đây là biến tướng cần loại bỏ.</p>
+          </div>
+          <div class="glass-soft concept-card reveal delay-4" style="padding: 2rem; border-radius: 24px;">
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(44,95,45,0.2); color: var(--green); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">hub</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--green); margin-bottom: 0.8rem;">4. Kinh tế tâm linh số</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Không gian nơi niềm tin bị thương mại hóa mạnh mẽ qua tarot online, app AI, livestream và giao dịch tâm linh trực tuyến.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ══ QUOTE ══ -->
+    <section class="content-section px-6 md:px-20 max-w-[1400px] mx-auto" style="padding-top: 40px;">
+      <div class="quote-block reveal mx-auto max-w-[940px] rounded-2xl">
+        <blockquote class="quote-text font-display">
+          "Khi niềm tin bị định giá thương mại và sự bình an tỷ lệ thuận với số tiền bỏ ra, ranh giới của tín ngưỡng lành mạnh bắt đầu bị phá vỡ."
+        </blockquote>
+        <div class="quote-meta">— Phân tích từ mạch lập luận SPST-C6-02</div>
+      </div>
+    </section>
+
+    <!-- ══ THỰC TIỄN ══ -->
+    <section id="thuc-tien" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
+      
+      <!-- PHẦN III. PHÂN TÍCH BỐI CẢNH -->
+      <div class="mb-24">
+
+        <!-- Section Header -->
+        <div class="reveal mb-6">
+          <div class="section-eyebrow" style="margin-bottom: 1rem;">Phần III. Phân tích bối cảnh thực tiễn · <span style="font-style:italic;">Lộc trình bày</span></div>
+        </div>
+
+        <!-- Two-column: Title + Objective -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 items-start mb-10 reveal delay-1">
+          <!-- Left: Title + Lead -->
+          <div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 3.8rem); line-height: 1.1; color: var(--text-primary); margin-bottom: 1.5rem;">
+              Sự dịch chuyển từ<br><span style="color: var(--gold-deep); font-style: italic;">niềm tin</span><br>đến <span style="color: var(--navy);">thương mại số</span>
+            </h2>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; max-width: 520px;">
+              Khi nội dung tâm linh rời khỏi không gian thờ tự để bước lên nền tảng TikTok, YouTube và các ứng dụng AI, bản chất của nó đã thay đổi toàn diện.
+            </p>
+
+          </div>
+
+          <!-- Right: Objective callout block -->
+          <div>
+            <div class="glass-soft" style="padding: 2.2rem; border-radius: 20px; border-left: 4px solid var(--gold); background: rgba(255,255,255,0.45); height: 100%;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem;">
+                <span class="material-symbols-outlined" style="color: var(--gold-deep); font-size: 22px;">target</span>
+                <strong style="color: var(--gold-deep); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.12em;">Mục tiêu phân tích</strong>
+              </div>
+              <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin: 0 0 1.5rem;">
+                Sử dụng hệ thống lý luận của <strong style="color:var(--ink);">Chương 6</strong> để chứng minh:
+              </p>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem;">
+                <li style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="min-width: 28px; height: 28px; border-radius: 8px; background: rgba(212,175,55,0.15); color: var(--gold-deep); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; margin-top:2px;">1</span>
+                  <p style="margin: 0; font-size: 1rem; color: var(--text-secondary); line-height: 1.6;">Tìm kiếm chỗ dựa tinh thần là <strong style="color:var(--gold-deep);">nhu cầu chính đáng</strong> của con người.</p>
+                </li>
+                <li style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="min-width: 28px; height: 28px; border-radius: 8px; background: rgba(26,42,58,0.12); color: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; margin-top:2px;">2</span>
+                  <p style="margin: 0; font-size: 1rem; color: var(--text-secondary); line-height: 1.6;">Việc đưa nó lên không gian số đang <strong style="color:var(--navy);">làm mờ ranh giới</strong> tín ngưỡng lành mạnh.</p>
+                </li>
+                <li style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="min-width: 28px; height: 28px; border-radius: 8px; background: rgba(44,95,45,0.12); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; margin-top:2px;">3</span>
+                  <p style="margin: 0; font-size: 1rem; color: var(--text-secondary); line-height: 1.6;">Biến tín ngưỡng thành <strong style="color:var(--green);">cạm bẫy mê tín trục lợi</strong> trên nền tảng số.</p>
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="panel panel--right panel--glow panel--answers" aria-labelledby="rightHeading">
-          <div class="panel__head">
-            <h2 id="rightHeading">Chọn phân loại</h2>
-            <p class="panel__hint" id="answersHint">Lật thẻ trước để mở khóa chọn.</p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+          <!-- A: THỰC TRẠNG -->
+          <div class="glass-soft reveal delay-1 hover-spotlight" style="border-radius: 24px; border-top: 4px solid var(--gold); overflow: hidden; display: flex; flex-direction: column;">
+            <div style="height: 280px; width: 100%; overflow: hidden; position: relative; background: var(--ink);">
+              <img src="images/concept_commerce.png" alt="Thương mại hóa niềm tin" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,11,12,0.6) 0%, transparent 55%);"></div>
+              <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(10,11,12,0.85); color: var(--gold); padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; border: 1px solid rgba(212,175,55,0.4); font-family: var(--font-body); letter-spacing: 0.1em;">A. THỰC TRẠNG</div>
+              <div style="position: absolute; bottom: 1rem; left: 1.5rem; right: 1.5rem;">
+                <h4 style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Sự "thương mại hóa" niềm tin</h4>
+              </div>
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column; gap: 1.2rem;">
+              <!-- Quan điểm callout -->
+              <div style="padding: 1rem 1.2rem; background: rgba(212,175,55,0.08); border-radius: 12px; border-left: 3px solid var(--gold);">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.6; font-style: italic;">
+                  Gen Z tìm đến tâm linh vì <strong style="color: var(--gold-deep);">áp lực việc làm và đồng lứa</strong> — nhu cầu hoàn toàn chính đáng, nhưng đã bị thương mại hóa thành giao dịch sòng phẳng.
+                </p>
+              </div>
+              <!-- Bullets -->
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; display: flex; flex-direction: column; gap: 0.9rem;">
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--gold-deep);">✦</span>
+                  Hashtag <code style="background:rgba(212,175,55,0.12);padding:1px 6px;border-radius:4px;font-size:0.85rem;">#Tarot</code> &amp; <code style="background:rgba(212,175,55,0.12);padding:1px 6px;border-radius:4px;font-size:0.85rem;">#ChuaLanh</code> đạt <strong style="color: var(--gold-deep);">hàng tỷ lượt xem</strong>, tạo "trào lưu đám đông" câu view và trục lợi quảng cáo.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--gold-deep);">✦</span>
+                  Người trẻ sẵn sàng <strong style="color: var(--gold-deep);">chi trả khoản tiền lớn</strong> cho một phiên xem bói ngắn — không còn là "thắp nhang cầu an" tự nguyện truyền thống.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--gold-deep);">✦</span>
+                  Khi sự bình an <strong style="color: var(--gold-deep);">tỷ lệ thuận với số tiền bỏ ra</strong>, ranh giới tín ngưỡng lành mạnh đã bị phá vỡ.
+                </li>
+              </ul>
+              <!-- Consequence tag -->
+              <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(212,175,55,0.15);">
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--gold-deep); text-transform: uppercase; letter-spacing: 0.08em;">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">warning</span>
+                  Hệ quả: Niềm tin bị định giá thương mại
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div class="answer-side__intro">
-            <ul class="answer-side__pills">
-              <li>Tự nguyện</li>
-              <li>Minh bạch</li>
-              <li>Không dọa nạt</li>
-              <li>Không bán “thần thánh”</li>
+          <!-- B: NGHỊCH LÝ CÔNG NGHỆ -->
+          <div class="glass-soft reveal delay-2 hover-spotlight" style="border-radius: 24px; border-top: 4px solid var(--navy); overflow: hidden; display: flex; flex-direction: column;">
+            <div style="height: 280px; width: 100%; overflow: hidden; position: relative; background: var(--ink);">
+              <img src="images/concept_algorithm.png" alt="Nghịch lý công nghệ" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,11,12,0.6) 0%, transparent 55%);"></div>
+              <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(10,11,12,0.85); color: #7CA1FF; padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; border: 1px solid rgba(26,42,58,0.6); font-family: var(--font-body); letter-spacing: 0.1em;">B. NGHỊCH LÝ CÔNG NGHỆ</div>
+              <div style="position: absolute; bottom: 1rem; left: 1.5rem; right: 1.5rem;">
+                <h4 style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Thuật toán "nuôi dưỡng" sợ hãi</h4>
+              </div>
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column; gap: 1.2rem;">
+              <div style="padding: 1rem 1.2rem; background: rgba(26,42,58,0.08); border-radius: 12px; border-left: 3px solid var(--navy);">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.6; font-style: italic;">
+                  Công nghệ vốn <strong style="color: var(--navy);">trung lập</strong> — nhưng đang bị các đối tượng xấu lợi dụng để khai thác <strong style="color: var(--navy);">sự hoang mang</strong> và hạn chế nhận thức của người trẻ.
+                </p>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; display: flex; flex-direction: column; gap: 0.9rem;">
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--navy);">✦</span>
+                  Các "thầy online" lợi dụng <strong style="color: var(--navy);">thuật toán đề xuất</strong> để liên tục đẩy thông điệp tiêu cực, lời dự ngôn đáng sợ đến tài khoản đang lo âu, khủng hoảng.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--navy);">✦</span>
+                  Các thuật toán gieo quẻ dùng <strong style="color: var(--navy);">AI phán xét định mệnh máy móc</strong> thay vì hướng con người đến nỗ lực tự thân.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--navy);">✦</span>
+                  Gen Z rơi vào <strong style="color: var(--navy);">"nghiện tâm linh"</strong>: thụ động, chờ đợi may rủi và đánh mất quyền tự chủ cuộc sống.
+                </li>
+              </ul>
+              <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(26,42,58,0.15);">
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: 0.08em;">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">psychology_alt</span>
+                  Hệ quả: Mất quyền tự chủ cá nhân
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- C: VẤN ĐỀ RANH GIỚI -->
+          <div class="glass-soft reveal delay-3 hover-spotlight" style="border-radius: 24px; border-top: 4px solid var(--green); overflow: hidden; display: flex; flex-direction: column;">
+            <div style="height: 280px; width: 100%; overflow: hidden; position: relative; background: var(--ink);">
+              <img src="images/concept_anonymous.png" alt="Sự ẩn danh" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-expo);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,11,12,0.6) 0%, transparent 55%);"></div>
+              <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(10,11,12,0.85); color: #8BE8A1; padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; border: 1px solid rgba(44,95,45,0.6); font-family: var(--font-body); letter-spacing: 0.1em;">C. VẤN ĐỀ RANH GIỚI</div>
+              <div style="position: absolute; bottom: 1rem; left: 1.5rem; right: 1.5rem;">
+                <h4 style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Sự ẩn danh & Lỗ hổng pháp lý</h4>
+              </div>
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column; gap: 1.2rem;">
+              <div style="padding: 1rem 1.2rem; background: rgba(44,95,45,0.08); border-radius: 12px; border-left: 3px solid var(--green);">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.6; font-style: italic;">
+                  <strong style="color: var(--green);">Tự do tín ngưỡng</strong> luôn phải đi đôi với trách nhiệm cá nhân và thượng tôn pháp luật — quyền tự do không dung túng hành vi lừa đảo.
+                </p>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; display: flex; flex-direction: column; gap: 0.9rem;">
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--green);">✦</span>
+                  <strong style="color: var(--green);">Mã QR chuyển khoản</strong> và tính ẩn danh của tài khoản mạng xã hội khiến người trẻ mất hoàn toàn khả năng kiểm chứng danh tính "thầy online".
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--green);">✦</span>
+                  Khi có thiệt hại, các tài khoản sẵn sàng <strong style="color: var(--green);">"bay màu"</strong> tức thì — tạo ra lỗ hổng lớn về trách nhiệm pháp lý mà cơ quan chức năng khó xử lý.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                  <span style="position: absolute; left: 0; color: var(--green);">✦</span>
+                  Người trẻ gánh chịu hậu quả <strong style="color: var(--green);">"tiền mất, tật mang"</strong> và khủng hoảng tâm lý nặng nề hơn.
+                </li>
+              </ul>
+              <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(44,95,45,0.15);">
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em;">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">gavel</span>
+                  Hệ quả: Lỗ hổng pháp lý & tâm lý
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top: 6rem;">
+        <div class="section-eyebrow">Case Study thực tiễn</div>
+        <h2 class="section-title">Ba lát cắt thực tế rất gần với đời sống sinh viên</h2>
+        <p class="section-lead">Mỗi case study là một biểu hiện cụ thể của ranh giới mỏng manh giữa tín ngưỡng và mê tín</p>
+      </div>
+
+      <div class="mt-12">
+        <!-- Case 1 -->
+        <div class="zig-zag-row reveal delay-1">
+          <div class="zig-zag-content">
+            <div class="case-tag" style="margin-bottom: 1rem;">Case 01</div>
+            <h3 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-primary); margin-bottom: 1rem;">Đốt vàng mã & Phô trương</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+              Gốc rễ là lòng hiếu thảo và sự tưởng nhớ tổ tiên, nhưng khi bị đẩy thành sự phô trương, ganh đua lãng phí, nó có thể biến thành biến tướng mê tín dị đoan. Ranh giới nằm ở ý niệm "trần sao âm vậy" bị thương mại hoá quá đà.
+            </p>
+            <div class="case-foot" style="font-weight: 600;">
+              <span style="color:var(--blush);">⚠</span> Hệ quả: lãng phí tài chính, nguy cơ cháy nổ, ô nhiễm môi trường.
+            </div>
+          </div>
+          <div class="zig-zag-image">
+            <div class="editorial-image">
+              <img src="images/case_votive.png" alt="Đốt vàng mã thời đại số">
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="zig-zag-row reveal delay-2">
+          <div class="zig-zag-content">
+            <div class="case-tag" style="margin-bottom: 1rem;">Case 02</div>
+            <h3 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-primary); margin-bottom: 1rem;">Tarot online & AI Fortune Telling</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+              Tìm kiếm lời khuyên từ Tarot không hẳn là xấu, nhưng việc phó thác quyết định học tập, tình cảm, và tương lai công việc cho "random quẻ" hoặc chatbot AI là biểu hiện của sự thoái thác trách nhiệm cá nhân trước áp lực cuộc sống.
+            </p>
+            <div class="case-foot" style="font-weight: 600;">
+              <span style="color:var(--gold-deep);">⚠</span> Hệ quả: lệ thuộc tâm lý, trì hoãn quyết định, giảm năng lực tự chủ.
+            </div>
+          </div>
+          <div class="zig-zag-image">
+            <div class="editorial-image">
+              <img src="images/case_tarot.png" alt="Tarot và Trí tuệ nhân tạo">
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="zig-zag-row reveal delay-3">
+          <div class="zig-zag-content">
+            <div class="case-tag" style="margin-bottom: 1rem;">Case 03</div>
+            <h3 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-primary); margin-bottom: 1rem;">Giải hạn trục lợi & Tâm linh mạng</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+              Lợi dụng nỗi sợ hãi, sự bất an và lòng tham để ép buộc chuyển khoản, cúng bái online hay mua vật phẩm "hóa giải" giá trên trời. Đây là hành vi lừa đảo núp bóng tâm linh, lợi dụng sự cả tin trên không gian mạng.
+            </p>
+            <div class="case-foot" style="font-weight: 600;">
+              <span style="color:var(--navy);">⚠</span> Hệ quả: thiệt hại tài sản lớn, khủng hoảng tâm lý, vi phạm pháp luật hình sự.
+            </div>
+          </div>
+          <div class="zig-zag-image">
+            <div class="editorial-image">
+              <img src="images/case_scam.png" alt="Cảnh báo lừa đảo tâm linh">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three source tags -->
+      <div class="reveal delay-4 mt-8 flex flex-wrap gap-3">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(181,135,58,.08);border:1px solid var(--gold-line);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">
+          <span class="material-symbols-outlined" style="font-size:14px;">gavel</span>
+          Nghị định 144/2021/NĐ-CP
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(44,62,92,.07);border:1px solid var(--sky-line);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);">
+          <span class="material-symbols-outlined" style="font-size:14px;">menu_book</span>
+          Luật Tín ngưỡng, Tôn giáo 2016
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(74,107,82,.07);border:1px solid var(--sage-line);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);">
+          <span class="material-symbols-outlined" style="font-size:14px;">shield</span>
+          Điều 174 – Bộ luật Hình sự
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TRÁCH NHIỆM ══ -->
+    <section id="trach-nhiem" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
+      <div class="section-head reveal text-center" style="margin:0 auto;">
+        <div class="section-eyebrow justify-center">Ranh giới và trách nhiệm</div>
+        <h2 class="section-title">Bộ lọc để phân biệt tín ngưỡng với mê tín</h2>
+      </div>
+
+      <div class="overflow-x-auto reveal delay-1 mt-12">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tiêu chí</th>
+              <th>✦ Tín ngưỡng lành mạnh</th>
+              <th>✗ Mê tín dị đoan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mục đích</td>
+              <td>Hướng thiện, nhớ về cội nguồn, an ủi tinh thần</td>
+              <td>Trục lợi, gieo sợ hãi, hứa hẹn đổi vận phi lý</td>
+            </tr>
+            <tr>
+              <td>Hành vi</td>
+              <td>Văn minh, tự nguyện, phù hợp thuần phong mỹ tục</td>
+              <td>Cuồng tín, phản khoa học, phụ thuộc vào "thầy online"</td>
+            </tr>
+            <tr>
+              <td>Hệ quả</td>
+              <td>Cân bằng nội tâm, gắn kết cộng đồng, giữ gìn văn hóa</td>
+              <td>Mất tiền, hoang mang, lệ thuộc và vi phạm pháp luật</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bento-grid reveal delay-1 mt-12">
+        <div class="bento-item bento-item--large glass-soft">
+          <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1.5rem; color: var(--gold-light);">Trách nhiệm của sinh viên</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="responsibility-item" style="border-top: none; padding-top: 0; margin-top: 0;">
+              <span style="background: rgba(212,175,55,0.2); color: var(--gold-light);">01</span>
+              <div>
+                <strong style="color: var(--beige-soft);">Thế giới quan khoa học</strong>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Ưu tiên kiến thức, kỹ năng và kiểm chứng thay vì phụ thuộc vào bói toán hay "đổi vận".</p>
+              </div>
+            </div>
+            <div class="responsibility-item" style="border-top: none; padding-top: 0; margin-top: 0;">
+              <span style="background: rgba(212,175,55,0.2); color: var(--gold-light);">02</span>
+              <div>
+                <strong style="color: var(--beige-soft);">Thượng tôn pháp luật</strong>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Ủng hộ quyền tín ngưỡng chính đáng nhưng kiên quyết đấu tranh với lừa đảo, mê tín dị đoan.</p>
+              </div>
+            </div>
+            <div class="responsibility-item" style="border-top: none; padding-top: 0; margin-top: 0; grid-column: 1 / -1;">
+              <span style="background: rgba(212,175,55,0.2); color: var(--gold-light);">03</span>
+              <div>
+                <strong style="color: var(--beige-soft);">Lan tỏa nhận thức cộng đồng</strong>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Chia sẻ thông tin đúng đắn, nhắc nhở bạn bè và người thân tránh xa các cạm bẫy tâm linh số trên mạng xã hội.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-item bento-item--small glass-soft" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1.5rem; color: var(--gold-light);">Nguyên tắc</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.8); line-height: 1.8;">
+              <li style="margin-bottom: 0.8rem;">✦ Tôn trọng tự do tín ngưỡng.</li>
+              <li style="margin-bottom: 0.8rem;">✦ Phản bác mê tín trục lợi.</li>
+              <li style="margin-bottom: 0.8rem;">✦ Giữ gìn văn hóa truyền thống.</li>
+              <li>✦ Nâng cao năng lực phản biện.</li>
             </ul>
-            <p class="answer-side__lead">
-              Hai cực phân loại — đọc tình huống kỹ, xem clip nếu cần, rồi chọn <strong>A</strong> hoặc
-              <strong>B</strong> trước khi đồng hồ về 0.
+          </div>
+          
+          <div style="margin-top:20px;padding:14px 18px;background:rgba(212,175,55,0.1);border-radius:12px;border:1px solid rgba(212,175,55,0.3);">
+            <p style="font-size:0.85rem;color:var(--gold-light);line-height:1.7; margin: 0;">
+              <span style="font-weight:700;">Nguồn:</span> Giáo trình CNXHKH, 2021
             </p>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="answers answers--game" id="answersBlock">
-            <button type="button" class="answer-g answer-g--belief" data-answer="true">
-              <span class="answer-g__badge">A</span>
-              <span class="answer-g__icon" aria-hidden="true">✦</span>
-              <span class="answer-g__body">
-                <span class="answer-g__label">Tín ngưỡng đúng đắn</span>
-                <span class="answer-g__sub">Sinh hoạt lành mạnh, minh bạch</span>
-              </span>
-              <span class="answer-g__chev" aria-hidden="true">›</span>
-            </button>
-            <button type="button" class="answer-g answer-g--superstition" data-answer="false">
-              <span class="answer-g__badge">B</span>
-              <span class="answer-g__icon" aria-hidden="true">⚠</span>
-              <span class="answer-g__body">
-                <span class="answer-g__label">Mê tín dị đoan</span>
-                <span class="answer-g__sub">Dọa nạt, hứa hẹn phi lý, trục lợi</span>
-              </span>
-              <span class="answer-g__chev" aria-hidden="true">›</span>
-            </button>
-          </div>
+    <!-- ══ PHỤ LỤC AI ══ -->
+    <section id="phu-luc-ai" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
 
-          <div class="answer-side__deep">
-            <h3 class="answer-side__deep-title">Gợi ý phân loại</h3>
-            <div class="answer-side__compare">
-              <div class="answer-side__tile answer-side__tile--a">
-                <span class="answer-side__tile-tag">A</span>
-                <p class="answer-side__tile-head">Tín ngưỡng đúng đắn</p>
-                <p class="answer-side__tile-body">
-                  Nghi thức, lễ hội, tôn giáo… <strong>lành mạnh</strong>, công khai, không lợi dụng nỗi sợ để
-                  moi tiền.
-                </p>
-              </div>
-              <div class="answer-side__tile answer-side__tile--b">
-                <span class="answer-side__tile-tag">B</span>
-                <p class="answer-side__tile-head">Mê tín dị đoan</p>
-                <p class="answer-side__tile-body">
-                  Hứa chữa bệnh / đổi vận chắc chắn, <strong>dọa tang</strong>, ép tiền “giải hạn”, mua bán linh
-                  nghiệm.
-                </p>
-              </div>
+      <div class="gold-rule mb-16"></div>
+
+      <div class="section-head reveal">
+        <div class="section-eyebrow">Phụ lục AI</div>
+        <h2 class="section-title">Minh bạch về cách dùng AI trong quá trình làm bài</h2>
+        <p class="section-lead">
+          Phần này được thêm riêng để bài thuyết trình đầy đủ hơn, thể hiện rõ công cụ hỗ trợ, mục đích sử dụng và giới hạn học thuật.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-[0.9fr_1.1fr] gap-8 mt-12">
+        <article class="glass-soft ai-note reveal delay-1">
+          <h3>Cam kết liêm chính học thuật</h3>
+          <p>AI chỉ được dùng như công cụ hỗ trợ tư duy, kiểm tra cấu trúc và gợi mở ý tưởng. Nội dung cốt lõi, lập luận và kiểm chứng vẫn do nhóm sinh viên chịu trách nhiệm.</p>
+          <ul>
+            <li>Không dùng AI thay thế việc đọc giáo trình.</li>
+            <li>Không coi AI là nguồn trích dẫn duy nhất.</li>
+            <li>Luôn đối chiếu với văn bản, báo chí và quy định pháp luật.</li>
+          </ul>
+
+          <!-- Integrity indicators -->
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--sage);">
+              <span class="material-symbols-outlined" style="font-size:16px;color:var(--sage);">verified</span>
+              Nội dung đã đối chiếu với giáo trình gốc
             </div>
-            <ul class="answer-side__checklist">
-              <li>Có <strong>ép tài chính</strong> hoặc hứa hẹn phi lý → thường nghiêng về B.</li>
-              <li>Chỉ là <strong>tập quán văn hóa</strong>, tôn trọng, không trục lợi → thường nghiêng về A.</li>
-              <li>Không chắc: đọc lại mô tả trên thẻ pastel và clip (nếu có).</li>
-            </ul>
-            <p class="answer-side__note">Mỗi câu chỉ một đáp án đúng theo nội dung học phần.</p>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <div
-      class="fs-layer"
-      id="fullscreenLayer"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Clip toàn màn hình"
-      hidden
-    >
-      <div class="fs-layer__backdrop" data-fs-close></div>
-      <div class="fs-layer__content">
-        <button type="button" class="fs-close" id="fsClose" aria-label="Đóng">×</button>
-        <div class="fs-card">
-          <div class="fs-card__media">
-            <video id="fsVideo" class="fs-card__video" playsinline controls preload="auto"></video>
-            <div class="fs-card__fallback" id="fsFallback" hidden>
-              <p class="fs-card__fallback-title" id="fsFallbackTitle"></p>
-              <p class="fs-card__fallback-text" id="fsFallbackText"></p>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--navy);">
+              <span class="material-symbols-outlined" style="font-size:16px;color:var(--navy);">fact_check</span>
+              Số liệu thực tế đã kiểm chứng từ báo chí chính thống
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--gold);">
+              <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold);">workspace_premium</span>
+              Chịu trách nhiệm học thuật toàn bộ nội dung
             </div>
           </div>
-          <p class="fs-card__title" id="fsTitle"></p>
-        </div>
-      </div>
-    </div>
+        </article>
 
-    <!-- Popup đúng / sai + giải thích -->
-    <div class="result-popup" id="resultPopup" hidden>
-      <div class="result-popup__backdrop" data-result-close></div>
-      <div
-        class="result-popup__dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="resultPopupTitle"
-      >
-        <div class="result-popup__header">
-          <span class="result-popup__icon" id="resultPopupIcon" aria-hidden="true"></span>
-          <div>
-            <p class="result-popup__kicker" id="resultPopupKicker"></p>
-            <h2 class="result-popup__title" id="resultPopupTitle"></h2>
+        <div class="glass-soft ai-table-wrap reveal delay-2">
+          <div style="margin-bottom:16px;">
+            <h3 style="font-family:var(--font-display);font-size:1.7rem;color:var(--ink);margin-bottom:4px;">Bảng sử dụng AI</h3>
+            <p style="color:var(--text-muted);font-size:.88rem;">Minh bạch từng thành viên và công cụ</p>
+          </div>
+          <div class="table-scroll">
+            <table class="ai-table">
+              <thead>
+                <tr>
+                  <th>Thành viên</th>
+                  <th>Công cụ</th>
+                  <th>Mục đích</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Lộc</strong></td>
+                  <td><span style="color:var(--navy);font-weight:600;">Gemini</span></td>
+                  <td>Xây dựng mạch logic, kiểm tra độ an toàn học thuật</td>
+                </tr>
+                <tr>
+                  <td><strong>Duy</strong></td>
+                  <td><span style="color:var(--sage);font-weight:600;">NotebookLM</span></td>
+                  <td>Tra cứu và đối chiếu định nghĩa trong giáo trình</td>
+                </tr>
+                <tr>
+                  <td><strong>Thông</strong></td>
+                  <td><span style="color:var(--navy);font-weight:600;">Gemini</span></td>
+                  <td>Tìm kiếm vụ việc pháp luật và nguồn báo xác thực</td>
+                </tr>
+                <tr>
+                  <td><strong>Minh Anh</strong></td>
+                  <td><span style="color:var(--gold);font-weight:600;">ChatGPT</span></td>
+                  <td>Gợi ý bố cục, logic trình bày và ví dụ thực tế</td>
+                </tr>
+                <tr>
+                  <td><strong>Thịnh</strong></td>
+                  <td><span style="color:var(--text-primary);font-weight:600;">Antigravity</span></td>
+                  <td>Dev web và game, chỉnh sửa giao diện tinh tế, hiện đại</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="result-popup__grid" id="resultPopupGrid">
-          <article class="result-popup__card result-popup__card--belief" data-answer-col="true">
-            <header class="result-popup__card-head">
-              <span class="result-popup__card-tag">Tín ngưỡng đúng đắn</span>
-              <span class="result-popup__chip result-popup__chip--correct" id="resultChipBelief" hidden
-                >Đáp án đúng</span
-              >
-            </header>
-            <p class="result-popup__card-text" id="resultTextBelief"></p>
-          </article>
-          <article class="result-popup__card result-popup__card--superstition" data-answer-col="false">
-            <header class="result-popup__card-head">
-              <span class="result-popup__card-tag">Mê tín dị đoan</span>
-              <span class="result-popup__chip result-popup__chip--correct" id="resultChipSuper" hidden
-                >Đáp án đúng</span
-              >
-            </header>
-            <p class="result-popup__card-text" id="resultTextSuper"></p>
-          </article>
+    <!-- ══ CTA ══ -->
+    <section class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
+      <div class="glass-soft relative overflow-hidden reveal" style="border-radius: 32px; padding: 5rem 2rem; text-align: center;">
+        
+        <!-- Background decorative elements -->
+        <div style="position:absolute; top:-40%; left:-10%; width:400px; height:400px; background:rgba(212,175,55,0.18); filter:blur(80px); border-radius:50%; pointer-events:none;"></div>
+        <div style="position:absolute; bottom:-40%; right:-10%; width:400px; height:400px; background:rgba(44,95,45,0.15); filter:blur(80px); border-radius:50%; pointer-events:none;"></div>
+
+        <div class="relative z-10 max-w-[860px] mx-auto">
+          <div class="section-eyebrow" style="justify-content: center; margin-bottom: 1.5rem;">Thực hành tương tác</div>
+          
+          <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-primary);">
+            Củng cố kiến thức qua <span style="color: var(--gold-deep); font-style: italic;">minigame</span>
+          </h2>
+          
+          <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8; max-width: 680px; margin: 0 auto 3.5rem;">
+            Không chỉ là lý thuyết khô khan. Hãy vận dụng ngay "bộ lọc khoa học" để phân loại 10 tình huống thực tế thường gặp trên không gian mạng. Bạn sẽ nhận ra ranh giới giữa tín ngưỡng và trục lợi đôi khi chỉ cách nhau một nút bấm.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-12">
+            <div class="glass-soft" style="padding: 1.8rem; border-radius: 24px; background: rgba(255,255,255,0.6);">
+              <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-deep); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem;">
+                <span class="material-symbols-outlined" style="font-size: 24px;">timer</span>
+              </div>
+              <h4 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--ink);">Ba cấp độ khó</h4>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Tùy chọn độ khó với áp lực thời gian Dễ - Vừa - Khó để thử thách khả năng phản xạ và ghi nhớ lý thuyết.</p>
+            </div>
+            
+            <div class="glass-soft" style="padding: 1.8rem; border-radius: 24px; background: rgba(255,255,255,0.6);">
+              <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(44,95,45,0.15); color: var(--green); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem;">
+                <span class="material-symbols-outlined" style="font-size: 24px;">movie</span>
+              </div>
+              <h4 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--ink);">Tình huống thực</h4>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Trải nghiệm các video clip minh họa trực quan được cắt ghép từ TikTok và đời sống Gen Z thực tế.</p>
+            </div>
+            
+            <div class="glass-soft" style="padding: 1.8rem; border-radius: 24px; background: rgba(255,255,255,0.6);">
+              <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(26,42,58,0.15); color: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem;">
+                <span class="material-symbols-outlined" style="font-size: 24px;">fact_check</span>
+              </div>
+              <h4 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--ink);">Giải thích cặn kẽ</h4>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Nhận ngay phân tích hai chiều chi tiết (Tín ngưỡng/Mê tín) sau mỗi câu hỏi để khắc sâu kiến thức.</p>
+            </div>
+          </div>
+
+          <a href="game.html" class="btn-soft btn-soft--large" style="margin:0 auto;display:inline-flex; font-size: 1.05rem; padding: 16px 40px; box-shadow: 0 16px 40px rgba(212,175,55,0.25);">
+            <span class="material-symbols-outlined" style="font-size:22px;">sports_esports</span>
+            Khởi động Minigame
+          </a>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <p class="result-popup__footnote" id="resultPopupFootnote"></p>
-
-        <div class="result-popup__actions">
-          <button type="button" class="result-popup__btn" id="resultPopupNext">Tiếp tục</button>
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div>
+        <div class="footer-brand">Tín Ngưỡng vs Mê Tín</div>
+        <p class="footer-text">Môn học: MLN131 – Chủ nghĩa Xã hội Khoa học. Nhóm đề tài thuyết trình SPST-C6-02.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Thành viên biên soạn</h4>
+        <ul class="footer-list">
+          <li>Nguyễn Thành Lộc (Cơ cấu lý luận)</li>
+          <li>Trần Quốc Duy (Tra cứu giáo trình)</li>
+          <li>Lê Minh Thông (Vụ việc pháp luật)</li>
+          <li>Phạm Minh Anh (Phân tích thực tế)</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Tài liệu tham khảo</h4>
+        <p class="footer-text">Giáo trình Chủ nghĩa Xã hội Khoa học (NXB Chính trị Quốc gia Sự thật, 2021).</p>
+        <div class="footer-links">
+          <a href="#hero">Về đầu trang</a>
+          <a href="#phu-luc-ai">Phụ lục AI</a>
+          <a href="game.html">Vào game</a>
         </div>
       </div>
     </div>
-
-    <div class="tutorial-overlay" id="tutorialOverlay" hidden>
-      <div class="tutorial-card" id="tutorialCard" role="dialog" aria-modal="true" aria-labelledby="tutorialKicker">
-        <p class="tutorial-card__kicker" id="tutorialKicker"></p>
-        <p class="tutorial-card__msg" id="tutorialMsg"></p>
-        <div class="tutorial-card__actions">
-          <button type="button" class="tutorial-card__skip" id="tutorialSkip">Bỏ qua</button>
-          <button type="button" class="tutorial-card__next" id="tutorialNext">Tiếp</button>
-        </div>
-      </div>
+    <div class="max-w-[1400px] mx-auto mt-12 pt-6 border-t" style="border-color:var(--border-soft);text-align:center;font-size:10px;color:var(--text-ghost);">
+      &copy; 2026 Nhóm Thuyết Trình SPST-C6-02. Tất cả quyền được bảo lưu.
     </div>
+  </footer>
 
-    <script src="data/cards.js"></script>
-    <script src="js/app.js" defer></script>
-  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // ── Cursor
+      const cursor = document.getElementById('cursor');
+      const cursorRing = document.getElementById('cursor-ring');
+      if (cursor && cursorRing && window.innerWidth > 768) {
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+          cursorRing.style.left = e.clientX + 'px';
+          cursorRing.style.top = e.clientY + 'px';
+        });
+        const hoverTargets = 'a, button, .accordion-header, .glass-soft, .feature-card, .concept-card, .case-card';
+        const setupHover = () => {
+          document.querySelectorAll(hoverTargets).forEach(el => {
+            if (el.dataset.ch) return;
+            el.dataset.ch = '1';
+            el.addEventListener('mouseenter', () => {
+              cursor.style.width = '16px'; cursor.style.height = '16px';
+              cursorRing.style.width = '48px'; cursorRing.style.height = '48px';
+            });
+            el.addEventListener('mouseleave', () => {
+              cursor.style.width = '10px'; cursor.style.height = '10px';
+              cursorRing.style.width = '36px'; cursorRing.style.height = '36px';
+            });
+          });
+        };
+        setupHover();
+        new MutationObserver(setupHover).observe(document.body, { childList: true, subtree: true });
+      }
+
+      // ── Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => revealObs.observe(el));
+
+      // ── Reading progress
+      const prog = document.getElementById('reading-progress');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (prog) prog.style.width = ((window.scrollY / h) * 100) + '%';
+      });
+
+      // ── Header scroll state
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        if (header) header.classList.toggle('scrolled', window.scrollY > 24);
+      });
+
+      // ── Active nav
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 180) current = s.getAttribute('id'); });
+        navLinks.forEach(l => {
+          l.classList.remove('active');
+          if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+        });
+      });
+
+      // ── Accordion
+      window.toggleAccordion = function(header) {
+        const body = header.nextElementSibling;
+        const wasOpen = header.classList.contains('open');
+        document.querySelectorAll('.accordion-header.open').forEach(h => {
+          h.classList.remove('open');
+          h.nextElementSibling.classList.remove('open');
+        });
+        if (!wasOpen) { header.classList.add('open'); body.classList.add('open'); }
+      };
+
+      // ── Spotlight Effect for Glass Cards
+      document.querySelectorAll('.glass-soft, .feature-card, .concept-card, .case-card, .ai-note').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // ── Mobile nav
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      if (mobileBtn && mobileNav) {
+        mobileBtn.addEventListener('click', () => mobileNav.classList.add('open'));
+      }
+      window.closeMobileNav = function() { if (mobileNav) mobileNav.classList.remove('open'); };
+    });
+  </script>
+</body>
 </html>

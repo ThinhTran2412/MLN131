@@ -64,6 +64,9 @@
     resultChipBelief: document.getElementById("resultChipBelief"),
     resultChipSuper: document.getElementById("resultChipSuper"),
     resultPopupNext: document.getElementById("resultPopupNext"),
+    audioToggleBtn: document.getElementById("audioToggleBtn"),
+    volumeSlider: document.getElementById("volumeSlider"),
+    bgMusic: document.getElementById("bgMusic"),
   };
 
   /** @type {"easy"|"medium"|"hard"} */
@@ -761,6 +764,10 @@
     gameStarted = true;
     setDifficulty(difficulty);
     runTutorialIfNeeded();
+    
+    if (els.bgMusic && els.bgMusic.paused) {
+      els.bgMusic.play().catch(e => console.log("Auto-play blocked:", e));
+    }
   }
 
   function showIntro() {
@@ -773,6 +780,25 @@
   }
 
   function init() {
+    if (els.bgMusic) {
+      els.bgMusic.volume = els.volumeSlider ? els.volumeSlider.value : 0.4;
+      if (els.volumeSlider) {
+        els.volumeSlider.addEventListener("input", (e) => {
+          els.bgMusic.volume = e.target.value;
+          els.bgMusic.muted = (e.target.value == 0);
+        });
+      }
+      if (els.audioToggleBtn) {
+        els.audioToggleBtn.addEventListener("click", () => {
+          if (els.bgMusic.paused) {
+            els.bgMusic.play();
+          } else {
+            els.bgMusic.pause();
+          }
+        });
+      }
+    }
+
     els.answerBtns.forEach((b) => {
       b.addEventListener("mousemove", bindAnswerHover);
       b.addEventListener("click", () => onAnswer(b.dataset.answer));
