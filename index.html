@@ -27,7 +27,8 @@
   <header id="site-header">
     <div class="header-brand">
       <div class="brand-mark">
-        <span class="material-symbols-outlined" style="font-size:20px;">balance</span>
+        <img src="images/logo.png" alt="MLN131 Logo"
+          style="width:34px;height:34px;object-fit:contain;border-radius:6px;">
       </div>
       <div class="brand-text">
         <span class="brand-kicker">SPST · C6</span>
@@ -310,99 +311,475 @@
       <!-- Divider -->
       <div class="gold-rule mb-16"></div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-        <div>
-          <div class="section-eyebrow reveal">Lý luận Chương 6</div>
-          <h2 class="section-title reveal delay-1">Hệ thống khái niệm để phân định đúng sai</h2>
-          <p class="section-lead reveal delay-2">
-            Dựa trên giáo trình MLN131, bài thuyết trình đối chiếu ba khái niệm nền tảng: tín ngưỡng, tôn giáo và mê tín
-            dị đoan.
-            Từ đó, bộc lộ ranh giới giữa niềm tin lành mạnh và hành vi trục lợi.
-          </p>
+      <!-- Section Header -->
+      <div class="section-head reveal mb-10">
+        <div class="section-eyebrow">Lý luận Chương 6</div>
+        <h2 class="section-title">Hệ thống lý luận để phân định đúng sai</h2>
+        <p class="section-lead" style="max-width: 720px; color: var(--beige-soft);">
+          Dựa trên giáo trình MLN131 (NXB Chính trị Quốc gia Sự thật, 2021), bài thuyết trình đối chiếu các khái niệm
+          nền tảng, bản chất, nguồn gốc và các nguyên tắc giải quyết vấn đề tôn giáo trong tiến trình xây dựng chủ nghĩa
+          xã hội.
+        </p>
+      </div>
 
-          <div class="accordion-wrap reveal delay-3">
-            <div class="accordion-item">
-              <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>1. Nguồn gốc kinh tế – xã hội</span>
-                <span class="accordion-icon material-symbols-outlined">add</span>
+      <!-- Horizontal Tabs Selector -->
+      <div class="theory-tabs reveal delay-1">
+        <button class="theory-tab-btn active" onclick="switchTheoryTab(0)">
+          <span class="tab-num">A.</span> Khái niệm &amp; Phân biệt
+        </button>
+        <button class="theory-tab-btn" onclick="switchTheoryTab(1)">
+          <span class="tab-num">B.</span> Bản chất &amp; Nguồn gốc
+        </button>
+        <button class="theory-tab-btn" onclick="switchTheoryTab(2)">
+          <span class="tab-num">C.</span> 3 Tính chất tôn giáo
+        </button>
+        <button class="theory-tab-btn" onclick="switchTheoryTab(3)">
+          <span class="tab-num">D.</span> 4 Nguyên tắc giải quyết
+        </button>
+      </div>
+
+      <!-- Tab Panels Container -->
+      <div class="reveal delay-2 mt-8">
+
+        <!-- TAB A: KHÁI NIỆM & PHÂN BIỆT -->
+        <div class="theory-tab-content active" id="tab-khai-niem">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Tín ngưỡng -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid var(--gold); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">history_edu</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: var(--gold-light); opacity: 0.8; letter-spacing: 0.05em; background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 99px;">Trang
+                    216</span>
+                </div>
+                <h3
+                  style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 1rem;">
+                  Tín ngưỡng</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 1.5rem 0;">
+                  Niềm tin, sự ngưỡng mộ kết hợp với hành vi thờ cúng những lực lượng thiêng liêng để cầu mong sự che
+                  chở, nâng đỡ.
+                </p>
               </div>
-              <div class="accordion-body">
-                <p>Con người tìm đến chỗ dựa tinh thần khi đối diện bất ổn, áp lực và những biến động khó kiểm soát. Sự
-                  bùng nổ dịch vụ tâm linh online sau dịch bệnh là minh chứng thực tiễn rõ nét.</p>
+              <div>
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.2rem;">
+                  <span
+                    style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 8px;">Ví
+                    dụ thực tế:</span>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      style="font-size: 11px; color: var(--gold-light); background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); padding: 3px 8px; border-radius: 4px;">Thờ
+                      cúng tổ tiên</span>
+                    <span
+                      style="font-size: 11px; color: var(--gold-light); background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); padding: 3px 8px; border-radius: 4px;">Thờ
+                      Thành hoàng</span>
+                    <span
+                      style="font-size: 11px; color: var(--gold-light); background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); padding: 3px 8px; border-radius: 4px;">Anh
+                      hùng dân tộc</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>2. Nguồn gốc nhận thức</span>
-                <span class="accordion-icon material-symbols-outlined">add</span>
+
+            <!-- Card 2: Tôn giáo -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid #7CA1FF; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(124,161,255,0.15); color: #7CA1FF; display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">church</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: #7CA1FF; opacity: 0.8; letter-spacing: 0.05em; background: rgba(124,161,255,0.15); padding: 4px 10px; border-radius: 99px;">Trang
+                    214-215</span>
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #7CA1FF; margin-bottom: 1rem;">
+                  Tôn giáo</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 1.2rem 0;">
+                  Một hình thái ý thức xã hội phản ánh hư ảo hiện thực khách quan vào đầu óc con người, biến lực lượng
+                  thế gian thành lực lượng siêu thế gian.
+                </p>
               </div>
-              <div class="accordion-body">
-                <p>Khi tri thức chưa đủ hoặc thiếu kiểm chứng, con người dễ tuyệt đối hóa điều chưa hiểu và tin vào cách
-                  giải thích siêu nhiên. Đây là sự cường điệu mặt chủ thể của nhận thức.</p>
+              <div>
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                  <span
+                    style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 8px;">Đủ
+                    5 yếu tố cấu thành:</span>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    <span style="font-size: 11px; color: #7CA1FF;"><span style="color:var(--gold);">✦</span> Đấng siêu
+                      nhiên</span>
+                    <span style="font-size: 11px; color: #7CA1FF;"><span style="color:var(--gold);">✦</span> Giáo
+                      lý/Giáo luật</span>
+                    <span style="font-size: 11px; color: #7CA1FF;"><span style="color:var(--gold);">✦</span> Cơ sở thờ
+                      tự</span>
+                    <span style="font-size: 11px; color: #7CA1FF;"><span style="color:var(--gold);">✦</span> Tổ chức
+                      (Giáo hội)</span>
+                    <span style="font-size: 11px; color: #7CA1FF; grid-column: span 2;"><span
+                        style="color:var(--gold);">✦</span> Tín đồ</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>3. Nguồn gốc tâm lý</span>
-                <span class="accordion-icon material-symbols-outlined">add</span>
+
+            <!-- Card 3: Mê tín dị đoan -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid var(--blush); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(184,107,115,0.2); color: var(--blush); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">warning</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: var(--blush); opacity: 0.8; letter-spacing: 0.05em; background: rgba(184,107,115,0.2); padding: 4px 10px; border-radius: 99px;">Trang
+                    217</span>
+                </div>
+                <h3
+                  style="font-family: var(--font-display); font-size: 1.8rem; color: var(--blush); margin-bottom: 1rem;">
+                  Mê tín dị đoan</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0 0 1.5rem 0;">
+                  Niềm tin mê muội, cuồng tín vào các lực lượng siêu nhiên dẫn đến hành vi cực đoan, sai lệch, vi phạm
+                  đạo đức, pháp luật và gây hại cho xã hội.
+                </p>
               </div>
-              <div class="accordion-body">
-                <p>Sợ hãi, cô đơn, FOMO, mong muốn được an ủi là những điều khiến mê tín có "đất sống" trên không gian
-                  số. Việc Gen Z tìm điểm tựa vì lo âu hoàn toàn phù hợp với nguồn gốc này.</p>
+              <div>
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.2rem;">
+                  <span
+                    style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 8px;">Ví
+                    dụ biến tướng:</span>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      style="font-size: 11px; color: var(--blush); background: rgba(184,107,115,0.1); border: 1px solid rgba(184,107,115,0.2); padding: 3px 8px; border-radius: 4px;">Bói
+                      toán lừa đảo</span>
+                    <span
+                      style="font-size: 11px; color: var(--blush); background: rgba(184,107,115,0.1); border: 1px solid rgba(184,107,115,0.2); padding: 3px 8px; border-radius: 4px;">Cúng
+                      bái thay chữa bệnh</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="glass-soft concept-card reveal delay-1" style="padding: 2rem; border-radius: 24px;">
-            <div
-              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-              <span class="material-symbols-outlined" style="font-size: 24px;">history_edu</span>
+        <!-- TAB B: BẢN CHẤT & NGUỒN GỐC -->
+        <div class="theory-tab-content" id="tab-ban-chat">
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 items-start">
+            <!-- Left Column: Bản chất -->
+            <div class="flex flex-col gap-6">
+              <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
+                <h4
+                  style="font-family: var(--font-display); font-size: 1.6rem; color: var(--gold-light); margin: 0 0 6px;">
+                  Bản chất của Tôn giáo</h4>
+                <span
+                  style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">Tính
+                  hai mặt của ý thức tôn giáo</span>
+              </div>
+
+              <!-- Duy tâm card -->
+              <div class="glass-soft"
+                style="padding: 1.5rem; border-radius: 18px; border-left: 3px solid var(--blush); background: rgba(255,255,255,0.02);">
+                <div class="flex justify-between items-center mb-2">
+                  <strong style="color: var(--blush); font-family: var(--font-display); font-size: 1.25rem;">Thế giới
+                    quan: Duy tâm</strong>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px;">Trang
+                    216</span>
+                </div>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0;">
+                  Đối lập trực tiếp với thế giới quan duy vật biện chứng của chủ nghĩa Mác - Lênin. Phản ánh hiện thực
+                  một cách hư ảo, hoang đường.
+                </p>
+              </div>
+
+              <!-- Văn hóa đạo đức card -->
+              <div class="glass-soft"
+                style="padding: 1.5rem; border-radius: 18px; border-left: 3px solid var(--green); background: rgba(255,255,255,0.02);">
+                <div class="flex justify-between items-center mb-2">
+                  <strong style="color: var(--green); font-family: var(--font-display); font-size: 1.25rem;">Văn hóa
+                    &amp; Đạo đức: Hướng thiện</strong>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px;">Trang
+                    219</span>
+                </div>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0;">
+                  Chứa đựng các giá trị nhân văn, hướng con người tới cái thiện, điều chỉnh hành vi đạo đức của con
+                  người trong cộng đồng.
+                </p>
+              </div>
             </div>
-            <h3
-              style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 0.8rem;">
-              1. Tín ngưỡng</h3>
-            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Niềm tin và cách thể
-              hiện niềm tin trước sự linh thiêng, hướng con người tới giá trị tốt đẹp. Tín ngưỡng là nhu cầu tinh thần
-              chính đáng.</p>
-          </div>
-          <div class="glass-soft concept-card reveal delay-2" style="padding: 2rem; border-radius: 24px;">
-            <div
-              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-              <span class="material-symbols-outlined" style="font-size: 24px;">church</span>
+
+            <!-- Right Column: 3 Nguồn gốc -->
+            <div class="flex flex-col gap-6">
+              <div style="border-left: 2px solid var(--gold); padding-left: 1.25rem;">
+                <h4
+                  style="font-family: var(--font-display); font-size: 1.6rem; color: var(--gold-light); margin: 0 0 6px;">
+                  3 Nguồn gốc tồn tại</h4>
+                <span
+                  style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">Tại
+                  sao tôn giáo vẫn tồn tại trong xã hội?</span>
+              </div>
+
+              <div class="accordion-wrap">
+                <!-- Nguồn gốc 1 -->
+                <div class="accordion-item" style="border-bottom-color: rgba(255,255,255,0.1);">
+                  <div class="accordion-header" onclick="toggleAccordion(this)"
+                    style="color: var(--beige-soft); border-bottom-color: rgba(255,255,255,0.05); padding: 1rem 0;">
+                    <span style="font-weight: 600; display:flex; align-items:center; gap:10px;">
+                      <span style="color: var(--gold); font-size:14px; font-weight:800;">1.</span> Kinh tế – Xã hội
+                    </span>
+                    <span
+                      style="font-size:10px; color:var(--text-muted); margin-right: 15px; border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                      217</span>
+                    <span class="accordion-icon material-symbols-outlined">add</span>
+                  </div>
+                  <div class="accordion-body">
+                    <p style="font-size:0.92rem; line-height:1.6; margin: 0 0 8px 0; color: rgba(255,255,255,0.85);">
+                      Bắt nguồn từ sự bất lực của con người trước các lực lượng tự nhiên (thiên tai, dịch bệnh) hoặc các
+                      lực lượng xã hội (áp bức, bóc lột, bất công).
+                    </p>
+                    <div
+                      style="background: rgba(212,175,55,0.08); padding: 10px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.15); font-size: 0.88rem; color: var(--gold-light);">
+                      <strong>Thực tế hiện đại:</strong> Khủng hoảng kinh tế, dịch bệnh bùng phát khiến các hoạt động
+                      "tâm linh online" (xem Tarot, gieo quẻ số) trở nên rầm rộ.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Nguồn gốc 2 -->
+                <div class="accordion-item" style="border-bottom-color: rgba(255,255,255,0.1);">
+                  <div class="accordion-header" onclick="toggleAccordion(this)"
+                    style="color: var(--beige-soft); border-bottom-color: rgba(255,255,255,0.05); padding: 1rem 0;">
+                    <span style="font-weight: 600; display:flex; align-items:center; gap:10px;">
+                      <span style="color: var(--gold); font-size:14px; font-weight:800;">2.</span> Nhận thức
+                    </span>
+                    <span
+                      style="font-size:10px; color:var(--text-muted); margin-right: 15px; border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                      217</span>
+                    <span class="accordion-icon material-symbols-outlined">add</span>
+                  </div>
+                  <div class="accordion-body">
+                    <p style="font-size:0.92rem; line-height:1.6; margin: 0; color: rgba(255,255,255,0.85);">
+                      Khi trình độ khoa học và nhận thức của con người chưa giải thích được các hiện tượng khách quan
+                      (hoặc khi nhận thức bị tuyệt đối hóa, thần thánh hóa các hiện tượng đó lên), con người sẽ quy kết
+                      cho thế lực siêu nhiên.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Nguồn gốc 3 -->
+                <div class="accordion-item" style="border-bottom-color: rgba(255,255,255,0.1);">
+                  <div class="accordion-header" onclick="toggleAccordion(this)"
+                    style="color: var(--beige-soft); border-bottom-color: rgba(255,255,255,0.05); padding: 1rem 0;">
+                    <span style="font-weight: 600; display:flex; align-items:center; gap:10px;">
+                      <span style="color: var(--gold); font-size:14px; font-weight:800;">3.</span> Tâm lý
+                    </span>
+                    <span
+                      style="font-size:10px; color:var(--text-muted); margin-right: 15px; border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                      218</span>
+                    <span class="accordion-icon material-symbols-outlined">add</span>
+                  </div>
+                  <div class="accordion-body">
+                    <p style="font-size:0.92rem; line-height:1.6; margin: 0 0 8px 0; color: rgba(255,255,255,0.85);">
+                      Sự sợ hãi trước những rủi ro ngẫu nhiên của đời sống xã hội, hoặc lòng biết ơn, tôn kính quá mức
+                      đối với những người có công với nước, với gia đình.
+                    </p>
+                    <div
+                      style="background: rgba(26,42,58,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.88rem; color: var(--beige-soft);">
+                      <strong>Thực tế sinh viên:</strong> Gen Z tìm đến tâm linh hoặc bói toán khi bị stress học tập, lo
+                      âu về tương lai hoặc áp lực đồng lứa (FOMO).
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3
-              style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 0.8rem;">
-              2. Tôn giáo</h3>
-            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Hình thái ý thức xã
-              hội có giáo thuyết, lễ nghi, tổ chức, cơ sở thờ tự và cộng đồng tín đồ. Tôn giáo đóng vai trò liên kết xã
-              hội.</p>
-          </div>
-          <div class="glass-soft concept-card reveal delay-3" style="padding: 2rem; border-radius: 24px;">
-            <div
-              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(184,107,115,0.2); color: var(--blush); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-              <span class="material-symbols-outlined" style="font-size: 24px;">warning</span>
-            </div>
-            <h3
-              style="font-family: var(--font-display); font-size: 1.8rem; color: var(--blush); margin-bottom: 0.8rem;">
-              3. Mê tín dị đoan</h3>
-            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Niềm tin cuồng tín,
-              mù quáng, đi kèm hành vi cực đoan, sai lệch, gây hại cho cá nhân và xã hội. Đây là biến tướng cần loại bỏ.
-            </p>
-          </div>
-          <div class="glass-soft concept-card reveal delay-4" style="padding: 2rem; border-radius: 24px;">
-            <div
-              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(44,95,45,0.2); color: var(--green); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-              <span class="material-symbols-outlined" style="font-size: 24px;">hub</span>
-            </div>
-            <h3
-              style="font-family: var(--font-display); font-size: 1.8rem; color: var(--green); margin-bottom: 0.8rem;">
-              4. Kinh tế tâm linh số</h3>
-            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">Không gian nơi niềm
-              tin bị thương mại hóa mạnh mẽ qua tarot online, app AI, livestream và giao dịch tâm linh trực tuyến.</p>
           </div>
         </div>
+
+        <!-- TAB C: 3 TÍNH CHẤT CỦA TÔN GIÁO -->
+        <div class="theory-tab-content" id="tab-tinh-chat">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Tính lịch sử -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid var(--gold); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">hourglass_empty</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: var(--gold-light); opacity: 0.8; letter-spacing: 0.05em; background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 99px;">Trang
+                    218-219</span>
+                </div>
+                <h3
+                  style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-light); margin-bottom: 1rem;">
+                  Tính lịch sử</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">
+                  Tôn giáo là hiện tượng xã hội có tính lịch sử, có sự sinh ra, tồn tại, biến đổi và sẽ tự tiêu vong khi
+                  đời sống vật chất, dân trí và khoa học phát triển đạt đến mức độ cực kỳ cao.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2: Tính quần chúng -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid #7CA1FF; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(124,161,255,0.15); color: #7CA1FF; display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">groups</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: #7CA1FF; opacity: 0.8; letter-spacing: 0.05em; background: rgba(124,161,255,0.15); padding: 4px 10px; border-radius: 99px;">Trang
+                    219</span>
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #7CA1FF; margin-bottom: 1rem;">
+                  Tính quần chúng</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">
+                  Tôn giáo là nơi sinh hoạt văn hóa tinh thần của hàng tỷ tín đồ trên thế giới. Nó phản ánh (dù là hư
+                  ảo) khát vọng của nhân dân lao động về một xã hội tự do, bình đẳng và tốt đẹp.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3: Tính chính trị -->
+            <div class="glass-soft concept-card"
+              style="padding: 2.2rem; border-radius: 24px; border-top: 4px solid var(--blush); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: rgba(184,107,115,0.2); color: var(--blush); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">policy</span>
+                  </div>
+                  <span
+                    style="font-size: 11px; font-weight: 600; color: var(--blush); opacity: 0.8; letter-spacing: 0.05em; background: rgba(184,107,115,0.2); padding: 4px 10px; border-radius: 99px;">Trang
+                    219</span>
+                </div>
+                <h3
+                  style="font-family: var(--font-display); font-size: 1.8rem; color: var(--blush); margin-bottom: 1rem;">
+                  Tính chính trị</h3>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin: 0;">
+                  Xuất hiện khi xã hội phân chia giai cấp. Tôn giáo thường bị giai cấp thống trị hoặc các thế lực thù
+                  địch lợi dụng để phục vụ cho các mục tiêu chính trị, ru ngủ hoặc chống phá cách mạng.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB D: 4 NGUYÊN TẮC GIẢI QUYẾT TÔN GIÁO -->
+        <div class="theory-tab-content" id="tab-nguyen-tac">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Card 1: Quyền tự do tín ngưỡng -->
+            <div class="glass-soft"
+              style="padding: 2rem; border-radius: 24px; border-left: 4px solid var(--gold); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 44px; height: 44px; border-radius: 12px; background: rgba(212,175,55,0.15); color: var(--gold-light); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">lock_open</span>
+                  </div>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                    220-221</span>
+                </div>
+                <h4
+                  style="font-family: var(--font-display); font-size: 1.5rem; color: var(--gold-light); margin-bottom: 0.8rem;">
+                  1. Tôn trọng tự do tín ngưỡng</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin: 0;">
+                  Tôn trọng quyền tự do tín ngưỡng hoặc không tín ngưỡng của công dân. Mọi tôn giáo đều bình đẳng trước
+                  pháp luật, hoạt động trong khuôn khổ hiến pháp và pháp luật.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2: Gắn liền cải tạo xã hội -->
+            <div class="glass-soft"
+              style="padding: 2rem; border-radius: 24px; border-left: 4px solid var(--green); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 44px; height: 44px; border-radius: 12px; background: rgba(44,95,45,0.2); color: var(--green); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">construction</span>
+                  </div>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                    220-221</span>
+                </div>
+                <h4
+                  style="font-family: var(--font-display); font-size: 1.5rem; color: var(--green); margin-bottom: 0.8rem;">
+                  2. Gắn liền cải tạo xã hội</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin: 0;">
+                  Không dùng mệnh lệnh hành chính, bạo lực để xóa bỏ tôn giáo. Để giảm thiểu các ảnh hưởng tiêu cực của
+                  tôn giáo, phải cải tạo xã hội cũ, phát triển kinh tế, nâng cao đời sống vật chất và dân trí.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3: Phân biệt hai mặt -->
+            <div class="glass-soft"
+              style="padding: 2rem; border-radius: 24px; border-left: 4px solid #7CA1FF; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,161,255,0.15); color: #7CA1FF; display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">splitscreen</span>
+                  </div>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                    222, 228</span>
+                </div>
+                <h4 style="font-family: var(--font-display); font-size: 1.5rem; color: #7CA1FF; margin-bottom: 0.8rem;">
+                  3. Phân biệt rõ hai mặt của tôn giáo</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                  <div style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px;">
+                    <strong style="font-size: 0.88rem; color: #7CA1FF; display: block; margin-bottom: 2px;">Mặt tư tưởng
+                      (niềm tin):</strong>
+                    <span style="font-size: 0.88rem; color: rgba(255,255,255,0.8);">Giải quyết thông qua tuyên truyền,
+                      giáo dục, thuyết phục nâng cao dân trí.</span>
+                  </div>
+                  <div style="background: rgba(184,107,115,0.08); padding: 8px 12px; border-radius: 8px;">
+                    <strong style="font-size: 0.88rem; color: var(--blush); display: block; margin-bottom: 2px;">Mặt
+                      chính trị (lợi dụng chống phá):</strong>
+                    <span style="font-size: 0.88rem; color: rgba(255,255,255,0.8);">Giải quyết bằng pháp luật, kiên
+                      quyết đấu tranh nghiêm trị các thế lực phản động.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Quan điểm lịch sử - cụ thể -->
+            <div class="glass-soft"
+              style="padding: 2rem; border-radius: 24px; border-left: 4px solid var(--blush); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    style="width: 44px; height: 44px; border-radius: 12px; background: rgba(184,107,115,0.2); color: var(--blush); display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">calendar_month</span>
+                  </div>
+                  <span
+                    style="font-size: 10px; color: var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Trang
+                    223</span>
+                </div>
+                <h4
+                  style="font-family: var(--font-display); font-size: 1.5rem; color: var(--blush); margin-bottom: 0.8rem;">
+                  4. Quan điểm lịch sử – cụ thể</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin: 0;">
+                  Mỗi tôn giáo, giáo phái, ở mỗi thời kỳ lịch sử có vai trò và mức độ ảnh hưởng khác nhau. Do đó, chính
+                  sách ứng xử phải linh hoạt, cụ thể, không rập khuôn, máy móc.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- ══ QUOTE ══ -->
@@ -425,7 +802,7 @@
         <!-- Section Header -->
         <div class="reveal mb-6">
           <div class="section-eyebrow" style="margin-bottom: 1rem;">Phần III. Phân tích bối cảnh thực tiễn · <span
-              style="font-style:italic;">Lộc trình bày</span></div>
+              style="font-style:italic;"></span></div>
         </div>
 
         <!-- Two-column: Title + Objective -->
@@ -673,29 +1050,30 @@
 
       <div class="mt-12">
         <!-- Case 1 -->
-<div class="zig-zag-row reveal delay-1">
-  <div class="zig-zag-content">
-    <div class="case-tag" style="margin-bottom: 1rem;">Case 01</div>
-    <h3
-      style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-primary); margin-bottom: 1rem;">
-      App "Gieo Quẻ" & Tâm Linh Số
-    </h3>
-    <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
-      Nhiều ứng dụng và website hiện nay cho phép người dùng gieo quẻ, bói bài hoặc nhận
-      "thông điệp từ vũ trụ" chỉ bằng vài thao tác trên điện thoại. Khi các kết quả ngẫu nhiên
-      này được sử dụng để quyết định chuyện học tập, công việc hay tình cảm, niềm tin tâm linh
-      đã vượt khỏi vai trò tham khảo và dần mang tính mê tín dị đoan.
-    </p>
-    <div class="case-foot" style="font-weight: 600;">
-      <span style="color:var(--blush);">⚠</span> Hệ quả: lệ thuộc vào kết quả ngẫu nhiên, suy giảm tư duy phản biện và khả năng tự đưa ra quyết định.
-    </div>
-  </div>
-  <div class="zig-zag-image">
-    <div class="editorial-image">
-      <img src="images/case_fortune_app.png" alt="Ứng dụng gieo quẻ và tâm linh số">
-    </div>
-  </div>
-</div>
+        <div class="zig-zag-row reveal delay-1">
+          <div class="zig-zag-content">
+            <div class="case-tag" style="margin-bottom: 1rem;">Case 01</div>
+            <h3
+              style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-primary); margin-bottom: 1rem;">
+              App "Gieo Quẻ" & Tâm Linh Số
+            </h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+              Nhiều ứng dụng và website hiện nay cho phép người dùng gieo quẻ, bói bài hoặc nhận
+              "thông điệp từ vũ trụ" chỉ bằng vài thao tác trên điện thoại. Khi các kết quả ngẫu nhiên
+              này được sử dụng để quyết định chuyện học tập, công việc hay tình cảm, niềm tin tâm linh
+              đã vượt khỏi vai trò tham khảo và dần mang tính mê tín dị đoan.
+            </p>
+            <div class="case-foot" style="font-weight: 600;">
+              <span style="color:var(--blush);">⚠</span> Hệ quả: lệ thuộc vào kết quả ngẫu nhiên, suy giảm tư duy phản
+              biện và khả năng tự đưa ra quyết định.
+            </div>
+          </div>
+          <div class="zig-zag-image">
+            <div class="editorial-image">
+              <img src="images/case_fortune_app.png" alt="Ứng dụng gieo quẻ và tâm linh số">
+            </div>
+          </div>
+        </div>
 
         <!-- Case 2 -->
         <div class="zig-zag-row reveal delay-2">
@@ -859,7 +1237,7 @@
       </div>
     </section>
 
-    <!-- ══ PHỤ LỤC AI ══ -->
+    <!--<!-- ══ PHỤ LỤC AI ══ -->
     <section id="phu-luc-ai" class="content-section px-6 md:px-20 max-w-[1400px] mx-auto">
 
       <div class="gold-rule mb-16"></div>
@@ -914,6 +1292,7 @@
                   <th>Thành viên</th>
                   <th>Công cụ</th>
                   <th>Mục đích</th>
+                  <th>Prompt cơ bản</th>
                 </tr>
               </thead>
               <tbody>
@@ -922,26 +1301,36 @@
                   <td><span style="color:var(--navy);font-weight:600;">Gemini</span></td>
                   <td>Tham vấn cấu trúc khung lập luận, định hình hệ thống luận điểm thực tế cho Phần III và kiểm tra
                     tính nhất quán logic của câu hỏi phản biện trung tâm.</td>
+                  <td><em>"Giúp mình kiểm tra xem chuỗi lập luận này có nhất quán không: [dán đoạn luận điểm]. Nếu có lỗ
+                      hổng logic thì chỉ ra và gợi ý cách vá."</em></td>
                 </tr>
                 <tr>
                   <td><strong>Duy</strong></td>
                   <td><span style="color:var(--sage);font-weight:600;">NotebookLM</span></td>
                   <td>Tra cứu và đối chiếu định nghĩa trong giáo trình</td>
+                  <td><em>"Trong tài liệu đã tải lên, khái niệm [X] được định nghĩa như thế nào? Có chỗ nào mâu thuẫn
+                      với đoạn [Y] không?"</em></td>
                 </tr>
                 <tr>
                   <td><strong>Thông</strong></td>
                   <td><span style="color:var(--navy);font-weight:600;">Gemini</span></td>
                   <td>Tìm kiếm vụ việc pháp luật và nguồn báo xác thực</td>
+                  <td><em>"Tìm cho mình các vụ án hoặc sự kiện thực tế liên quan đến [chủ đề]. Ưu tiên nguồn từ báo
+                      chính thống Việt Nam trong vòng 5 năm gần nhất."</em></td>
                 </tr>
                 <tr>
                   <td><strong>Minh Anh</strong></td>
                   <td><span style="color:var(--gold);font-weight:600;">ChatGPT</span></td>
                   <td>Gợi ý bố cục, logic trình bày và ví dụ thực tế</td>
+                  <td><em>"Mình đang trình bày về [chủ đề] cho đối tượng là sinh viên luật. Gợi ý một bố cục rõ ràng, và
+                      cho 2–3 ví dụ thực tế dễ hiểu để minh hoạ."</em></td>
                 </tr>
                 <tr>
                   <td><strong>Thịnh</strong></td>
                   <td><span style="color:var(--text-primary);font-weight:600;">Antigravity</span></td>
                   <td>Dev web và game, chỉnh sửa giao diện tinh tế, hiện đại</td>
+                  <td><em>"Build a [component/feature] with this design spec: [mô tả]. Keep it clean, modern, and
+                      consistent with the existing color variables."</em></td>
                 </tr>
               </tbody>
             </table>
@@ -973,9 +1362,8 @@
 
           <p
             style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8; max-width: 680px; margin: 0 auto 3.5rem;">
-            Không chỉ là lý thuyết khô khan. Hãy vận dụng ngay "bộ lọc khoa học" để phân loại 10 tình huống thực tế
-            thường gặp trên không gian mạng. Bạn sẽ nhận ra ranh giới giữa tín ngưỡng và trục lợi đôi khi chỉ cách nhau
-            một nút bấm.
+            Không chỉ là lý thuyết khô khan. Hãy vận dụng ngay "bộ lọc khoa học" để vượt qua các câu hỏi lý thuyết trắc
+            nghiệm và nhận diện ranh giới giữa tín ngưỡng và mê tín trục lợi.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-12">
@@ -1130,6 +1518,28 @@
           h.nextElementSibling.classList.remove('open');
         });
         if (!wasOpen) { header.classList.add('open'); body.classList.add('open'); }
+      };
+
+      // ── Theory Tab Switcher
+      window.switchTheoryTab = function (index) {
+        const tabs = document.querySelectorAll('.theory-tab-btn');
+        const contents = document.querySelectorAll('.theory-tab-content');
+
+        tabs.forEach((tab, idx) => {
+          if (idx === index) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+
+        contents.forEach((content, idx) => {
+          if (idx === index) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
       };
 
       // ── Spotlight Effect for Glass Cards

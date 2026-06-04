@@ -15,76 +15,293 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Trang chủ / vào game -->
+    <!-- Trang chủ / vào game -->
     <div class="screen-intro" id="screenIntro" aria-hidden="false">
-      <div class="screen-intro__aurora" aria-hidden="true"></div>
-      <div class="screen-intro__grid" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--1" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--2" aria-hidden="true"></div>
-      <div class="screen-intro__orb screen-intro__orb--3" aria-hidden="true"></div>
+      <!-- Simulated Rotating Aurora Background -->
+      <div class="screen-intro__aurora-bg" aria-hidden="true"></div>
+      <div class="screen-intro__aurora-blob screen-intro__aurora-blob--1" aria-hidden="true"></div>
+      <div class="screen-intro__aurora-blob screen-intro__aurora-blob--2" aria-hidden="true"></div>
+      <div class="screen-intro__starry-overlay" aria-hidden="true"></div>
 
-      <div class="screen-intro__frame">
-        <header class="screen-intro__top">
-          <div class="screen-intro__logo">
-            <span class="screen-intro__logo-icon" aria-hidden="true">◇</span>
-            <span class="screen-intro__logo-text">SPST · C6</span>
-          </div>
-          <div class="screen-intro__pills" aria-hidden="true">
-            <span class="screen-intro__pill">Quest</span>
-            <span class="screen-intro__pill screen-intro__pill--live">Live</span>
-          </div>
-        </header>
-
-        <div class="screen-intro__body">
-          <p class="screen-intro__eyebrow">Minigame phân loại</p>
-          <h1 class="screen-intro__title">
-            <span class="screen-intro__title-line">Tín ngưỡng</span>
-            <span class="screen-intro__title-vs">vs</span>
-            <span class="screen-intro__title-line screen-intro__title-line--accent">Mê tín</span>
-          </h1>
-          <p class="screen-intro__lead">
-            Lật thẻ pastel đọc tình huống → xem clip (nút tròn góc phải) → chọn đúng loại. Đồng hồ chỉ chạy
-            <strong>sau khi lật thẻ</strong>, tạm dừng khi xem fullscreen.
-          </p>
-
-          <div class="screen-intro__cards-preview" aria-hidden="true">
-            <div class="screen-intro__mini screen-intro__mini--a"></div>
-            <div class="screen-intro__mini screen-intro__mini--b"></div>
-            <div class="screen-intro__mini screen-intro__mini--c"></div>
-          </div>
-
-          <ul class="screen-intro__rules">
-            <li><strong>3 cấp độ</strong> — Dễ 30s · Vừa 20s · Khó 10s mỗi câu</li>
-            <li><strong>Điểm</strong> theo độ khó thẻ; popup giải thích hai phía sau mỗi lượt</li>
-            <li><strong>Clip</strong> chỉ phát khi phóng to; đóng lại để tiếp tục chọn</li>
-          </ul>
-
-          <p class="screen-intro__error" id="introErrorLine" hidden></p>
-
-          <div class="screen-intro__actions">
-            <button type="button" class="screen-intro__btn screen-intro__btn--primary" id="introEnterBtn">
-              <span class="screen-intro__btn-glow" aria-hidden="true"></span>
-              <span class="screen-intro__btn-label">Vào game</span>
-              <span class="screen-intro__btn-arrow" aria-hidden="true">▶</span>
-            </button>
-          </div>
+      <!-- Main Glassmorphic Panel Container -->
+      <div id="main-glassmorphic-card" class="glass-panel">
+        <!-- Subtle white lighting reflection overlay -->
+        <div class="glass-panel__top-line"></div>
+        
+        <!-- Header Small Title -->
+        <div class="glass-panel__header">
+          <span class="glass-panel__eyebrow">Celestial Intro - Belief vs Superstition</span>
         </div>
 
-        <footer class="screen-intro__footer">
-          <div class="screen-intro__xp-bar" aria-hidden="true">
-            <span class="screen-intro__xp-fill"></span>
-          </div>
-          <div class="screen-intro__ticker" aria-hidden="true">
-            <div class="screen-intro__ticker-inner">
-              <span>Lật thẻ</span><span class="dot"></span><span>Phóng to</span><span class="dot"></span
-              ><span>Chọn đáp án</span><span class="dot"></span><span>Popup giải thích</span><span class="dot"></span>
-              <span>Lật thẻ</span><span class="dot"></span><span>Phóng to</span><span class="dot"></span
-              ><span>Chọn đáp án</span><span class="dot"></span><span>Popup giải thích</span>
+        <!-- Huge Vietnamese Title -->
+        <div class="glass-panel__title-wrap">
+          <h1 class="glass-panel__title">
+            Tín ngưỡng <span class="glass-panel__title-vs">vs</span> Mê tín
+          </h1>
+        </div>
+
+        <!-- Quick hint for card clicks -->
+        <div class="glass-panel__hint-text">
+          💡 Click vào bất kỳ thẻ gỗ tâm linh nào dưới đây để xem sâu sắc nguồn cội!
+        </div>
+
+        <!-- Three Central Cards Block -->
+        <div class="glass-panel__cards-grid">
+          
+          <!-- Card 1: Tín Ngưỡng -->
+          <div id="intro-card-tin-nguong" class="intro-card intro-card--belief" role="button" tabindex="0">
+            <!-- Hover lighting effect -->
+            <div class="intro-card__glow"></div>
+            <div class="intro-card__border-top"></div>
+            <div class="intro-card__border-bottom"></div>
+
+            <!-- Icon Block (CrystalBallSVG) -->
+            <div class="intro-card__icon-wrap">
+              <svg viewBox="0 0 200 200" class="svg-icon svg-icon--purple" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <radialGradient id="sphere-grad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#d1c4e9" stop-opacity="0.9" />
+                    <stop offset="40%" stop-color="#7e57c2" stop-opacity="0.85" />
+                    <stop offset="85%" stop-color="#311b92" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#12005e" stop-opacity="0.95" />
+                  </radialGradient>
+                  <linearGradient id="hand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffcc80" />
+                    <stop offset="100%" stop-color="#d84315" />
+                  </linearGradient>
+                  <radialGradient id="aurora-inner" cx="55%" cy="35%" r="45%">
+                    <stop offset="0%" stop-color="#00f5ff" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <g stroke="#ffffff" stroke-opacity="0.3" stroke-width="1">
+                  <line x1="100" y1="20" x2="100" y2="180" stroke-dasharray="3,3" />
+                  <line x1="20" y1="100" x2="180" y2="100" stroke-dasharray="3,3" />
+                  <circle cx="100" cy="100" r="75" stroke-dasharray="4,4" />
+                </g>
+                <path d="M100,5 L102,12 L109,10 L104,15 L108,21 L100,17 L92,21 L96,15 L91,10 L98,12 Z" fill="#ffd54f" />
+                <circle cx="45" cy="50" r="2" fill="#fff" opacity="0.6" />
+                <circle cx="155" cy="55" r="2.5" fill="#fff" opacity="0.8" />
+                <circle cx="160" cy="140" r="1.5" fill="#fff" opacity="0.5" />
+                <circle cx="40" cy="135" r="2" fill="#fff" opacity="0.7" />
+                <g filter="url(#glow-purple)">
+                  <circle cx="100" cy="95" r="48" fill="url(#sphere-grad)" stroke="#9575cd" stroke-width="2" />
+                  <circle cx="100" cy="95" r="46" fill="url(#aurora-inner)" style="mix-blend-mode: screen;" />
+                  <path d="M94,72 C112,72 121,85 120,102 C119,114 109,122 96,121 C90,121 82,117 79,112 C88,114 99,109 101,98 C102,87 96,78 89,75 C91,73 93,72 94,72 Z" fill="#fff" style="mix-blend-mode: overlay;" opacity="0.8" />
+                  <path d="M110,85 L112,90 L117,92 L112,94 L110,99 L108,94 L103,92 L108,90 Z" fill="#fffde7" />
+                  <path d="M82,105 L83,108 L86,109 L83,110 L82,113 L81,110 L78,109 L81,108 Z" fill="#ffd54f" />
+                </g>
+                <path d="M72,138 L128,138 L120,146 L80,146 Z" fill="#311b92" stroke="#5e35b1" stroke-width="2" />
+                <rect x="85" y="146" width="30" height="6" rx="2" fill="#1a237e" />
+                <g stroke="url(#hand-grad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                  <path d="M50,150 C55,142 58,130 52,115 C49,107 43,105 44,98 C45,95 48,95 50,100 C52,104 56,114 56,114 C56,114 55,102 55,92 C55,86 58,85 60,90 C62,94 65,108 65,108 C65,108 65,96 67,88 C68,83 72,83 73,88 C74,93 76,110 76,110 C76,110 78,98 80,94 C82,90 85,91 85,96 C85,102 82,118 78,131 C74,142 66,150 60,153" />
+                  <path d="M150,150 C145,142 142,130 148,115 C151,107 157,105 156,98 C155,95 152,95 150,100 C148,104 144,114 144,114 C144,114 145,102 145,92 C145,86 142,85 140,90 C138,94 135,108 135,108 C135,108 135,96 133,88 C132,83 128,83 127,88 C126,93 124,110 124,110 C124,110 122,98 120,94 C118,90 115,91 115,96 C115,102 118,118 122,131 C126,142 134,150 140,153" />
+                </g>
+                <circle cx="60" cy="144" r="2.5" fill="#ffd54f" class="animate-ping-slow" />
+                <circle cx="140" cy="144" r="2.5" fill="#ffd54f" class="animate-ping-slow" />
+              </svg>
+            </div>
+
+            <!-- Card Content -->
+            <div class="intro-card__content">
+              <h3 class="intro-card__title">Tín Ngưỡng</h3>
+              <p class="intro-card__desc">Hiểu về cội nguồn văn hóa và giá trị tinh thần.</p>
             </div>
           </div>
-        </footer>
+
+          <!-- Card 2: Ranh Giới -->
+          <div id="intro-card-ranh-gioi" class="intro-card intro-card--teal" role="button" tabindex="0">
+            <!-- Hover lighting effect -->
+            <div class="intro-card__glow"></div>
+            <div class="intro-card__border-top"></div>
+            <div class="intro-card__border-bottom"></div>
+
+            <!-- Icon Block (ScaleSVG) -->
+            <div class="intro-card__icon-wrap">
+              <svg viewBox="0 0 200 200" class="svg-icon svg-icon--teal" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="glow-teal" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00f5ff" />
+                    <stop offset="50%" stop-color="#1de9b6" />
+                    <stop offset="100%" stop-color="#00b0ff" />
+                  </linearGradient>
+                  <linearGradient id="gold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffe082" />
+                    <stop offset="100%" stop-color="#ffb300" />
+                  </linearGradient>
+                </defs>
+                <g stroke="#00f5ff" stroke-opacity="0.2" stroke-width="1">
+                  <circle cx="100" cy="100" r="80" stroke-dasharray="5,5" />
+                  <circle cx="100" cy="100" r="50" stroke-dasharray="3,3" />
+                  <line x1="100" y1="10" x2="100" y2="190" stroke-dasharray="2,2" />
+                </g>
+                <path d="M100,15 L102,20 L107,20 L103,24 L105,29 L100,26 L95,29 L97,24 L93,20 L98,20 Z" fill="#00e676" />
+                <path d="M40,30 L41.5,34 L45,34.5 L42,37 L43,40.5 L40,38.5 L37,40.5 L38,37 L35,34.5 L38.5,34 Z" fill="#0288d1" />
+                <path d="M160,35 L161.5,39 L165,39.5 L162,42 L163,45.5 L160,43.5 L157,45.5 L158,42 L155,39.5 L158.5,39 Z" fill="#ec407a" />
+                <g filter="url(#glow-teal)">
+                  <path d="M70,165 L130,165 L125,172 L75,172 Z" fill="#004d40" stroke="url(#metal-grad)" stroke-width="2.5" />
+                  <rect x="90" y="153" width="20" height="12" rx="1" fill="#004d40" stroke="url(#metal-grad)" stroke-width="2" />
+                  <line x1="100" y1="52" x2="100" y2="153" stroke="url(#metal-grad)" stroke-width="5.5" stroke-linecap="round" />
+                  <circle cx="100" cy="52" r="7.5" fill="#1de9b6" stroke="#fff" stroke-width="1.5" />
+                </g>
+                <g filter="url(#glow-teal)">
+                  <path d="M45,71 C70,64 130,64 155,71 L155,73 C130,66 70,66 45,73 Z" fill="url(#metal-grad)" />
+                  <circle cx="100" cy="68" r="4.5" fill="#00f5ff" />
+                  <circle cx="45" cy="72" r="3.5" fill="none" stroke="#fff" stroke-width="1.5" />
+                  <circle cx="155" cy="72" r="3.5" fill="none" stroke="#fff" stroke-width="1.5" />
+                </g>
+                <g>
+                  <line x1="45" y1="74" x2="25" y2="115" stroke="#4db6ac" stroke-width="1.5" />
+                  <line x1="45" y1="74" x2="65" y2="115" stroke="#4db6ac" stroke-width="1.5" />
+                  <path d="M20,115 L70,115 C66,128 34,128 20,115 Z" fill="#00695c" stroke="url(#metal-grad)" stroke-width="2" />
+                  <g filter="drop-shadow(0px 0px 6px rgba(255, 179, 0, 0.8))" class="animate-bounce-slow">
+                    <path d="M45,86 L49,94 L57,95 L51,101 L53,109 L45,105 L37,109 L39,101 L33,95 L41,94 Z" fill="url(#gold-grad)" stroke="#fff" stroke-width="1" />
+                    <circle cx="45" cy="97" r="1.5" fill="#fff" />
+                  </g>
+                </g>
+                <g>
+                  <line x1="155" y1="74" x2="135" y2="115" stroke="#ff80ab" stroke-width="1.5" />
+                  <line x1="155" y1="74" x2="175" y2="115" stroke="#ff80ab" stroke-width="1.5" />
+                  <path d="M130,115 L180,115 C176,128 144,128 130,115 Z" fill="#880e4f" stroke="#ff4081" stroke-width="2" />
+                  <g filter="drop-shadow(0px 0px 7px rgba(236, 64, 122, 0.9))" class="animate-bounce-slow2">
+                    <circle cx="155" cy="98" r="14" fill="#14061a" stroke="#ec407a" stroke-width="1.5" stroke-dasharray="3,1" opacity="0.4" />
+                    <text x="155" y="104" text-anchor="middle" font-size="18" font-weight="bold" fill="#ff4081" font-family="sans-serif">?</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Card Content -->
+            <div class="intro-card__content">
+              <h3 class="intro-card__title">Ranh Giới</h3>
+              <p class="intro-card__desc">Phân biệt giữa niềm tin và sự mù quáng.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Mê Tín -->
+          <div id="intro-card-me-tin" class="intro-card intro-card--rose" role="button" tabindex="0">
+            <!-- Hover lighting effect -->
+            <div class="intro-card__glow"></div>
+            <div class="intro-card__border-top"></div>
+            <div class="intro-card__border-bottom"></div>
+
+            <!-- Icon Block (MirrorCatSVG) -->
+            <div class="intro-card__icon-wrap">
+              <svg viewBox="0 0 200 200" class="svg-icon svg-icon--rose" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="glow-crimson" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <radialGradient id="mirror-shards" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ff8a80" stop-opacity="0.4" />
+                    <stop offset="60%" stop-color="#b71c1c" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#2c0003" stop-opacity="1" />
+                  </radialGradient>
+                  <linearGradient id="bronze-frame" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e57373" />
+                    <stop offset="50%" stop-color="#c2185b" />
+                    <stop offset="100%" stop-color="#311b92" />
+                  </linearGradient>
+                </defs>
+                <circle cx="140" cy="50" r="1.5" fill="#ffeb3b" opacity="0.6" />
+                <circle cx="50" cy="140" r="1" fill="#fff" opacity="0.8" />
+                <circle cx="45" cy="55" r="2" fill="#fff" opacity="0.5" />
+                <path d="M123,30 L125,32 L128,31 L126,33 L127,36 L125,34 L122,35 L124,33 Z" fill="#e91e63" opacity="0.7" class="animate-pulse" stroke-width="0.5" />
+                <path d="M164,30 C178,30 185,42 184,55 C183,63 176,70 167,70 C162,70 156,66 154,62 C161,63 169,59 171,51 C171,43 166,35 160,33 C162,31 163,30 164,30 Z" fill="#ffb74d" opacity="0.85" />
+                <g filter="url(#glow-crimson)">
+                  <path d="M100,125 L100,175 C100,178 96,181 92,181 L92,185 C92,185 108,185 108,185 L108,181 C104,181 100,178 100,175 Z" fill="url(#bronze-frame)" />
+                  <circle cx="100" cy="177" r="4.5" fill="#d81b60" />
+                  <ellipse cx="100" cy="90" rx="42" ry="54" fill="#150005" stroke="url(#bronze-frame)" stroke-width="4.5" />
+                  <ellipse cx="100" cy="90" rx="38" ry="50" fill="url(#mirror-shards)" stroke="#ff4081" stroke-width="1" />
+                </g>
+                <g stroke="#ff8a80" stroke-width="1.5" stroke-opacity="0.8">
+                  <circle cx="95" cy="88" r="1.5" fill="#fff" />
+                  <line x1="95" y1="88" x2="65" y2="60" />
+                  <line x1="95" y1="88" x2="135" y2="70" />
+                  <line x1="95" y1="88" x2="120" y2="130" />
+                  <line x1="95" y1="88" x2="80" y2="135" />
+                  <line x1="95" y1="88" x2="63" y2="105" />
+                  <line x1="95" y1="88" x2="101" y2="40" />
+                  <path d="M83,77 L110,81 L108,105 L89,107 L78,95 Z" fill="none" stroke="#ff5252" stroke-width="0.8" stroke-dasharray="2,2" />
+                  <path d="M72,67 L118,73 L113,117 L81,119 L68,102 Z" fill="none" stroke="#ff1744" stroke-width="0.8" />
+                </g>
+                <g filter="drop-shadow(0px 3px 8px rgba(0,0,0,0.95))">
+                  <path d="M128,125 C132,125 152,124 153,105 C154,88 138,89 138,98 C138,105 146,108 144,115 C142,122 134,121 127,126" stroke="#05030a" stroke-width="6" stroke-linecap="round" />
+                  <path d="M128,125 C132,125 152,124 153,105 C154,88 138,89 138,98 C138,105 146,108 144,115 C142,122 134,121 127,126" stroke="#2a1b40" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
+                  <path d="M106,145 C101,112 110,88 116,84 C118,83 121,84 123,88 C128,95 132,118 128,145 Z" fill="#05030a" />
+                  <path d="M106,145 C101,112 110,88 116,84 C118,83 121,84 123,88 C128,95 132,118 128,145 Z" fill="#130921" opacity="0.4" />
+                  <circle cx="120" cy="78" r="11" fill="#05030a" />
+                  <polygon points="110,72 109,58 118,68" fill="#05030a" />
+                  <polygon points="112,71 111,62 117,68" fill="#ff4081" opacity="0.3" />
+                  <polygon points="122,68 131,58 130,72" fill="#05030a" />
+                  <polygon points="123,68 129,62 128,71" fill="#ff4081" opacity="0.3" />
+                  <ellipse cx="116" cy="77" rx="2.5" ry="1.5" fill="#ffe082" transform="rotate(-5, 116, 77)" />
+                  <circle cx="116.5" cy="77" r="0.7" fill="#000" />
+                  <ellipse cx="124" cy="77" rx="2.5" ry="1.5" fill="#ffe082" transform="rotate(5, 124, 77)" />
+                  <circle cx="123.5" cy="77" r="0.7" fill="#000" />
+                  <line x1="112" y1="81" x2="103" y2="82" stroke="#fff" stroke-width="0.5" opacity="0.3" />
+                  <line x1="112" y1="83" x2="104" y2="86" stroke="#fff" stroke-width="0.5" opacity="0.3" />
+                  <line x1="127" y1="81" x2="136" y2="82" stroke="#fff" stroke-width="0.5" opacity="0.3" />
+                  <line x1="127" y1="83" x2="135" y2="86" stroke="#fff" stroke-width="0.5" opacity="0.3" />
+                </g>
+              </svg>
+            </div>
+
+            <!-- Card Content -->
+            <div class="intro-card__content">
+              <h3 class="intro-card__title">Mê Tín</h3>
+              <p class="intro-card__desc">Nhận diện những niềm tin không có căn cứ.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Button "Khám phá ngay" -->
+        <div class="glass-panel__actions">
+          <button type="button" id="introEnterBtn" class="explore-btn">
+            <span class="explore-btn__glow"></span>
+            <svg class="explore-btn__icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Khám phá ngay
+          </button>
+        </div>
+
+        <!-- Guides Footer Line -->
+        <div class="glass-panel__footer">
+          <p class="glass-panel__guide-text">
+            <strong>Hướng dẫn:</strong> Sử dụng chuột để tương tác với các thẻ bài. Trả lời các câu hỏi để tích điểm và mở khóa kiến thức mới!
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Popup chi tiết về thẻ bài khi click vào (Tín Ngưỡng / Ranh Giới / Mê Tín) -->
+      <div id="introCardDetailPopup" class="intro-detail-popup" hidden>
+        <div class="intro-detail-popup__backdrop" id="introDetailCloseBackdrop"></div>
+        <div class="intro-detail-popup__dialog">
+          <button type="button" class="intro-detail-popup__close" id="introDetailCloseBtn">×</button>
+          <div class="intro-detail-popup__content">
+            <h2 id="introDetailTitle" class="intro-detail-popup__title"></h2>
+            <div id="introDetailBody" class="intro-detail-popup__body"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -103,7 +320,9 @@
       </div>
       <header class="top-bar">
         <div class="brand">
-          <span class="brand__mark" aria-hidden="true">◇</span>
+          <div class="brand__mark">
+            <img src="images/logo.png" alt="MLN131 Logo" style="width:32px;height:32px;object-fit:contain;border-radius:4px;">
+          </div>
           <div class="brand__text">
             <span class="brand__tag">Quest</span>
             <h1>Tín ngưỡng vs mê tín</h1>
@@ -116,7 +335,7 @@
                 <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
               </svg>
             </button>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.4" style="width: 80px; accent-color: var(--gold); cursor: pointer;" title="Âm lượng">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7" style="width: 80px; accent-color: var(--gold); cursor: pointer;" title="Âm lượng">
             <audio id="bgMusic" loop preload="auto">
               <source src="media/songs/background.mp3" type="audio/mpeg">
             </audio>
@@ -144,9 +363,42 @@
       </header>
 
       <main class="layout">
-        <section class="panel panel--left panel--glow" aria-labelledby="leftHeading">
+        <section class="panel panel--left panel--glow panel--hints" aria-labelledby="leftHeading">
           <div class="panel__head">
-            <h2 id="leftHeading">Thẻ tình huống</h2>
+            <h2 id="leftHeading">Gợi ý phân loại</h2>
+          </div>
+
+          <div class="answer-side__deep">
+            <div class="answer-side__compare">
+              <div class="answer-side__tile answer-side__tile--a">
+                <span class="answer-side__tile-tag">A</span>
+                <p class="answer-side__tile-head">Tín ngưỡng đúng đắn</p>
+                <p class="answer-side__tile-body">
+                  Nghi thức, lễ hội, tôn giáo… <strong>lành mạnh</strong>, công khai, không lợi dụng nỗi sợ để
+                  moi tiền.
+                </p>
+              </div>
+              <div class="answer-side__tile answer-side__tile--b">
+                <span class="answer-side__tile-tag">B</span>
+                <p class="answer-side__tile-head">Mê tín dị đoan</p>
+                <p class="answer-side__tile-body">
+                  Hứa chữa bệnh / đổi vận chắc chắn, <strong>dọa tang</strong>, ép tiền "giải hạn", mua bán linh
+                  nghiệm.
+                </p>
+              </div>
+            </div>
+            <ul class="answer-side__checklist">
+              <li>Có <strong>ép tài chính</strong> hoặc hứa hẹn phi lý → thường nghiêng về B.</li>
+              <li>Chỉ là <strong>tập quán văn hóa</strong>, tôn trọng, không trục lợi → thường nghiêng về A.</li>
+              <li>Không chắc: đọc lại mô tả trên thẻ pastel và clip (nếu có).</li>
+            </ul>
+            <p class="answer-side__note">Mỗi câu chỉ một đáp án đúng theo nội dung học phần.</p>
+          </div>
+        </section>
+
+        <section class="panel panel--middle panel--glow" aria-labelledby="middleHeading">
+          <div class="panel__head">
+            <h2 id="middleHeading">Thẻ tình huống</h2>
             <p class="panel__step" id="cardStep"></p>
           </div>
 
@@ -234,7 +486,7 @@
               <li>Tự nguyện</li>
               <li>Minh bạch</li>
               <li>Không dọa nạt</li>
-              <li>Không bán “thần thánh”</li>
+              <li>Không bán "thần thánh"</li>
             </ul>
             <p class="answer-side__lead">
               Hai cực phân loại — đọc tình huống kỹ, xem clip nếu cần, rồi chọn <strong>A</strong> hoặc
@@ -261,34 +513,6 @@
               </span>
               <span class="answer-g__chev" aria-hidden="true">›</span>
             </button>
-          </div>
-
-          <div class="answer-side__deep">
-            <h3 class="answer-side__deep-title">Gợi ý phân loại</h3>
-            <div class="answer-side__compare">
-              <div class="answer-side__tile answer-side__tile--a">
-                <span class="answer-side__tile-tag">A</span>
-                <p class="answer-side__tile-head">Tín ngưỡng đúng đắn</p>
-                <p class="answer-side__tile-body">
-                  Nghi thức, lễ hội, tôn giáo… <strong>lành mạnh</strong>, công khai, không lợi dụng nỗi sợ để
-                  moi tiền.
-                </p>
-              </div>
-              <div class="answer-side__tile answer-side__tile--b">
-                <span class="answer-side__tile-tag">B</span>
-                <p class="answer-side__tile-head">Mê tín dị đoan</p>
-                <p class="answer-side__tile-body">
-                  Hứa chữa bệnh / đổi vận chắc chắn, <strong>dọa tang</strong>, ép tiền “giải hạn”, mua bán linh
-                  nghiệm.
-                </p>
-              </div>
-            </div>
-            <ul class="answer-side__checklist">
-              <li>Có <strong>ép tài chính</strong> hoặc hứa hẹn phi lý → thường nghiêng về B.</li>
-              <li>Chỉ là <strong>tập quán văn hóa</strong>, tôn trọng, không trục lợi → thường nghiêng về A.</li>
-              <li>Không chắc: đọc lại mô tả trên thẻ pastel và clip (nếu có).</li>
-            </ul>
-            <p class="answer-side__note">Mỗi câu chỉ một đáp án đúng theo nội dung học phần.</p>
           </div>
         </section>
       </main>
@@ -355,6 +579,15 @@
             <p class="result-popup__card-text" id="resultTextSuper"></p>
           </article>
         </div>
+
+        <!-- Unified Explanation for Theory Questions -->
+        <div id="resultPopupTheoryExplanation" style="margin: 1.25rem 0; padding: 1.25rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); text-align: left;" hidden>
+          <span style="font-family: var(--font-display); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px;">Giải thích lý thuyết</span>
+          <p id="resultTheoryExplanationText" style="margin: 0; font-size: 0.9rem; line-height: 1.55; color: rgba(238,240,255,0.92);"></p>
+        </div>
+
+        <!-- Summary Stats and Table for Complete State -->
+        <div id="resultPopupSummary" style="margin: 14px 24px; text-align: left;" hidden></div>
 
         <p class="result-popup__footnote" id="resultPopupFootnote"></p>
 
