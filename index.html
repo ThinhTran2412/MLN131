@@ -150,6 +150,11 @@
                 <span class="material-symbols-outlined" style="font-size:17px;">auto_stories</span>
                 Khám phá nội dung
               </a>
+              <button id="btn-play-video" onclick="openVideoModal()" class="btn-soft btn-soft--ghost btn-soft--large" style="position:relative;overflow:hidden;">
+                <span class="play-btn-ring"></span>
+                <span class="material-symbols-outlined" style="font-size:17px;color:var(--gold);">play_circle</span>
+                Xem video tổng quan
+              </button>
               <a href="game.html" class="btn-soft btn-soft--ghost btn-soft--large">
                 <span class="material-symbols-outlined" style="font-size:17px;">sports_esports</span>
                 Thử minigame
@@ -1322,15 +1327,14 @@
                   <td><strong>Minh Anh</strong></td>
                   <td><span style="color:var(--gold);font-weight:600;">ChatGPT</span></td>
                   <td>Gợi ý bố cục, logic trình bày và ví dụ thực tế</td>
-                  <td><em>"Mình đang trình bày về [chủ đề] cho đối tượng là sinh viên luật. Gợi ý một bố cục rõ ràng, và
+                  <td><em>"Mình đang trình bày về [chủ đề] cho đối tượng là sinh viên triết học. Gợi ý một bố cục rõ ràng, và
                       cho 2–3 ví dụ thực tế dễ hiểu để minh hoạ."</em></td>
                 </tr>
                 <tr>
                   <td><strong>Thịnh</strong></td>
                   <td><span style="color:var(--text-primary);font-weight:600;">Antigravity</span></td>
-                  <td>Dev web và game, chỉnh sửa giao diện tinh tế, hiện đại</td>
-                  <td><em>"Build a [component/feature] with this design spec: [mô tả]. Keep it clean, modern, and
-                      consistent with the existing color variables."</em></td>
+                  <td>Lập trình Web Slide và mini-game tương tác; tối ưu hóa giao diện tinh tế, hiện đại.</td>
+                  <td><em>"Tạo component [tên] bằng HTML/JS thuần với thiết kế Bento Grid và các hiệu ứng chuyển động mượt mà."</em></td>
                 </tr>
               </tbody>
             </table>
@@ -1560,8 +1564,59 @@
         mobileBtn.addEventListener('click', () => mobileNav.classList.add('open'));
       }
       window.closeMobileNav = function () { if (mobileNav) mobileNav.classList.remove('open'); };
+
+      // ── Video Modal
+      const videoModal = document.getElementById('video-modal');
+      const videoPlayer = document.getElementById('modal-video-player');
+
+      window.openVideoModal = function () {
+        if (videoModal && videoPlayer) {
+          videoModal.classList.add('is-active');
+          videoPlayer.pause();
+          videoPlayer.currentTime = 0;
+          setTimeout(() => {
+            videoPlayer.pause();
+          }, 100);
+        }
+      };
+
+      window.closeVideoModal = function () {
+        if (videoModal && videoPlayer) {
+          videoModal.classList.remove('is-active');
+          videoPlayer.pause();
+        }
+      };
+
+      // Close modal on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeVideoModal();
+        }
+      });
     });
   </script>
+
+  <!-- ══ VIDEO MODAL ══ -->
+  <div id="video-modal" class="video-modal">
+    <div class="video-modal__backdrop" onclick="closeVideoModal()"></div>
+    <div class="video-modal__container">
+      <div class="video-modal__header">
+        <div class="video-modal__title-group">
+          <span class="video-modal__kicker">Giới thiệu tổng quan</span>
+          <h3 class="video-modal__title">Tín Ngưỡng và Mê Tín thời công nghệ số</h3>
+        </div>
+        <button class="video-modal__close" onclick="closeVideoModal()" aria-label="Đóng video">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="video-modal__body">
+        <video id="modal-video-player" controls playsinline preload="metadata">
+          <source src="media/MLN131.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ xem video.
+        </video>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

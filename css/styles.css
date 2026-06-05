@@ -3995,8 +3995,8 @@ body.game-active .result-popup__btn:active {
 
 /* Tutorial Dialog styles */
 body.game-active .tutorial-overlay {
-  background: rgba(26, 42, 58, 0.6) !important;
-  backdrop-filter: blur(4px) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
 }
 
 body.game-active .tutorial-card {
